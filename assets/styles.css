@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap');
+@media (max-width: 768px) {
+
+    #formulas{
+        overflow-x: scroll;
+    }
+}
+
+
+h1, h2, h3, h4, div, td, th, tr{
+    font-family: "Ubuntu", sans-serif;
+}
+
+
+#sub-container{
+    margin-bottom: 5%;
+}
+
+#rank-table{
+    margin-bottom: 5%;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+html{
+    background-color: #232931;
+
+}
+
+h3{
+    font-weight: 400
+}
+
+h2{
+    font-weight: 500;
+}
+
+
+#navbar {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #393E46;
+    padding: 15px 20px;
+    margin:auto;
+    max-width: 85%;
+    margin-top: 1%;
+    border-radius: 15px;
+    border-width: 5px;
+
+}
+
+.logo{
+    color: #c5a7e7;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+.nav-links a {
+    color: #F1EFEC;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1rem;
+}
+
+.nav-links a:visited {
+    color: #F1EFEC;
+
+}
+
+.nav-links a:hover {
+    color: #aaa;
+}
+
+
+#githubLink a{
+    color:#c5a7e7;
+    text-decoration: none;
+}
+
+
+.mathEquations{
+    margin: 5%;
+}
+
+.mathEquations{
+    color: white;
+    font-size: 1.4rem;
+    
+}
+
+#githubLink a:visited{
+    color:#c5a7e7;
+    text-decoration: none;
+}
+
+
+
+a:visited{
+    color:#c5a7e7;
+    text-decoration: none;
+}
+a{
+    color:#c5a7e7;
+    text-decoration: none;
+
+}
+#series{
+    
+    margin:auto;
+    margin-top: 1%;
+    display: flex;
+    
+    overflow-x: scroll;
+    max-width: 90%;
+    border-bottom: 2px solid #393E46;
+    justify-content: center;
+
+}
+
+#series a{
+    color: #F1EFEC;
+    font-size: 0.7em;
+    cursor: pointer;
+
+    
+
+}
+
+
+#series h2{
+    padding-right: 10%;
+    padding-left: 10%
+    
+
+}
+
+#year{
+    
+    margin:auto;
+    margin-top: 1%;
+    display: flex;
+
+    overflow-x: scroll;
+    max-width: 90%;
+    border-bottom: 2px solid #393E46;
+    padding: 5px;
+    
+}
+
+#year a{
+    color: white;
+    font-size: 0.7em;
+    cursor: pointer;
+    
+
+}
+
+
+#year h2{
+    padding-right: 10%;
+    padding-left: 10%;
+    margin:0.5%;
+    
+
+}
+
+
+#races {
+    margin: auto;
+      margin-top: auto;
+    margin-top: 1%;
+    display: flex;
+    max-width: 75%;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    max-width: 90%;
+
+  }
+
+#races a{
+    color: #F1EFEC;
+    font-size: 0.7em;
+    cursor: pointer;
+
+    
+
+}
+
+
+#races h2{
+    padding-right: 10%;
+    padding-left: 10%;
+    
+    margin:0.5%;
+    
+
+}
+
+
+#data-table {
+    background-color: #232931;
+    border: #393E46 2px solid;
+    border-radius: 6px;
+    margin:auto;
+    width: 70%;
+
+
+
+
+}
+
+
+#data-table th {
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #303741;
+    color: #F1EFEC;
+
+}
+
+#data-table tr:nth-child(even){background-color: #2C333D;}
+#data-table tr:nth-child(odd){background-color: #37404A;}
+
+#data-table th, tr, td, table, tbody{
+    border-collapse: collapse;
+    padding:5px;
+    color:white;
+    padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#data-table tr:hover{
+    background-color: #1C1F24;
+
+}
+
+
+
+#data-table thead  th{
+    cursor: pointer;
+
+
+}
+
+
+.red{
+    color: #FF6B6B;
+}
+
+.green{
+    color: #4ECCA3;
+}
+
+#race-title{
+    color: #F1EFEC;
+    text-align: center;
+}
+
+math{
+    margin:auto;
+}
+
+
+
+#options ul li{
+    list-style-type: none;
+    /* display:inline-block; */
+    margin: 1%;
+    padding: 10px;
+    color: #F1EFEC;
+
+    border: 2px #393E46 solid;
+
+    
+}
+
+#options ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 0px;
+}
+
+.division-option{
+    color: #F1EFEC;
+    text-decoration: none;
+}
+
+.division-option:visited{
+    color:#F1EFEC;
+}
+
+
+#predictions{
+    margin: 5%;
+}
+
+#predictions h4{
+    padding:0;
+    margin:0;
+    color:#F1EFEC;
+    font-weight: lighter;
+}
+
+#predictions h3{
+    padding:0;
+    margin:0;
+    margin-bottom:15px;
+    color:#F1EFEC;  
+}
+
+#hometeam{
+    text-decoration: wavy;
+}
+
+

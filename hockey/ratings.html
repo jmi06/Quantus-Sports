@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>QuantusHockey</title>
+    <script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+
+
+    <div id="options">
+        <ul>
+            <li><a class="division-option" onclick="getDivision('all'); return false" >All Teams</a></li>
+            <li><a class="division-option" onclick="getDivision('Eastern'); return false">Eastern</a></li>
+            <li><a class="division-option" onclick="getDivision('Eastern Atlantic'); return false">Eastern Atlantic</a></li>
+            <li><a class="division-option" onclick="getDivision('Eastern Metropolitan'); return false">Eastern Metro</a></li>
+            <li><a class="division-option" onclick="getDivision('Western'); return false">Western</a></li>
+            <li><a class="division-option" onclick="getDivision('Western Central'); return false">Western Central</a></li>
+            <li><a class="division-option" onclick="getDivision('Western Pacific'); return false">Western Pacific</a></li>
+
+
+        </ul>
+    </div>
+
+
+    <div id="rank-table">
+
+
+
+        <h2 id="race-title"></h2>
+        <table id="data-table">
+            <thead>
+                <tr id="table-head"></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+
+
+    </div>
+    <h3 style="text-align: center; color:white;"><a id="githubLink" href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+
+
+    <script src="scripts/script.js"></script>
+    <script src="/hockey/components/header.js"></script>
+
+
+
+</body>
+</html>

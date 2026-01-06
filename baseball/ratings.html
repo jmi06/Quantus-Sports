@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/baseball/assets/styles.css">
+    <title>Quantus: Baseball</title>
+
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+
+
+    <div id="options">
+        <ul>
+            <li><a class="division-option" onclick="getDivision('all'); return false" >All Teams</a></li>
+            <li><a class="division-option" onclick="getDivision('AL'); return false">AL</a></li>
+            <li><a class="division-option" onclick="getDivision('ALEast'); return false">AL East</a></li>
+            <li><a class="division-option" onclick="getDivision('ALCentral'); return false">AL Central</a></li>
+            <li><a class="division-option" onclick="getDivision('ALWest'); return false">AL West</a></li>
+
+            <li><a class="division-option" onclick="getDivision('NL'); return false">NL</a></li>
+            <li><a class="division-option" onclick="getDivision('NL East'); return false">NL East</a></li>
+            <li><a class="division-option" onclick="getDivision('NL Central'); return false">NL Central</a></li>
+            <li><a class="division-option" onclick="getDivision('NL West'); return false">NL West</a></li>
+
+
+        </ul>
+    </div>
+
+
+    <div id="rank-table">
+
+
+
+        <h2 id="race-title"></h2>
+        <table id="data-table">
+            <thead>
+                <tr id="table-head"></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+
+
+    </div>
+
+    <h3 style="text-align: center; color:white;"><a id="githubLink" href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+
+
+    <script src="/baseball/scripts/script.js"></script>
+    <script src="/baseball/components/header.js"></script>
+
+
+</body>
+</html>
