@@ -83,7 +83,6 @@ function generate_table(division, data) {
         let new_stat;
         tableBody.innerText = ""
         Object.entries(orderData).forEach((team, index) => {
-            console.log(team)
             const tr = document.createElement("tr");
 
             const positionTd = document.createElement("td");
@@ -110,7 +109,6 @@ function generate_table(division, data) {
                     if(team[1]['record']){
 
                         new_stat = team[1]['record'].split('-')
-                        console.log(new_stat)
                         new_stat = new_stat[0] / ( Number(new_stat[0]) + Number(new_stat[1]))
                         new_stat = new_stat.toFixed(3);
 
