@@ -40,12 +40,10 @@ async function getUpcomingGames(teamRatings) {
 
 
     const today = new Date()
-    const formattedDate = new Intl.DateTimeFormat().format(today)
-    const dashlessDate = formattedDate.replaceAll('-', '')
-
-    const daysAhead = today.setDate(today.getDate() + 3)
-    const formattedFutureDate = new Intl.DateTimeFormat().format(daysAhead)
-    const dashlessFutureDate = formattedFutureDate.replaceAll('-', '')
+    const future = new Date()
+    future.setDate(future.getDate()+3)
+    const dashlessDate = new Intl.DateTimeFormat('en-CA').format(today).replace(/-/g, '');
+    const dashlessFutureDate = new Intl.DateTimeFormat('en-CA').format(future).replace(/-/g, '');
 
 
     try {

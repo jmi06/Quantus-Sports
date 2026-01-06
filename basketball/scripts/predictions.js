@@ -5,7 +5,9 @@ getDivision('all')
 let teamData = {}
 let futureGames = {}
 
-
+function toYYYYMMDD(date) {
+  return new Intl.DateTimeFormat('en-CA').format(date).replace(/-/g, '');
+}
 
 
 function formatGameTime(dateString) {
@@ -38,15 +40,12 @@ function formatGameTime(dateString) {
 async function getUpcomingGames(teamRatings) {
     const acc = teamRatings['predictionAccuracy']['acc'].split('-')
     document.getElementById('accuracy').innerText = `Prediction Accuracy: ${acc[0]}-${acc[1]}-${acc[2]} (${  ((Number(acc[0])/(Number(acc[0])+Number(acc[1])))*100).toFixed(1)   }%)`
-
+    
     const today = new Date()
-    const formattedDate = new Intl.DateTimeFormat().format(today)
-    const dashlessDate = formattedDate.replaceAll('-', '')
-
-    const daysAhead = today.setDate(today.getDate() + 3)
-    const formattedFutureDate = new Intl.DateTimeFormat().format(daysAhead)
-    const dashlessFutureDate = formattedFutureDate.replaceAll('-', '')
-
+    const future = new Date()
+    future.setDate(future.getDate()+3)
+    const dashlessDate = new Intl.DateTimeFormat('en-CA').format(today).replace(/-/g, '');
+    const dashlessFutureDate = new Intl.DateTimeFormat('en-CA').format(future).replace(/-/g, '');
 
     try {
         const response = await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${dashlessDate}-${dashlessFutureDate}`);
