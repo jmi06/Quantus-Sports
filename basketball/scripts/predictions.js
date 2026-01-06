@@ -80,7 +80,6 @@ async function getUpcomingGames(teamRatings) {
             const homeTeamProb = 1 / (1+10** ((awayTeamRating-homeTeamRating)/400) )
             const awayTeamProb = 1 / (1+10** ((homeTeamRating-awayTeamRating)/400) )
 
-            (homeTeamRating)
             if(homeTeamProb > awayTeamProb){
 
                 const message = `<h4 id="gameTime">${formatGameTime(gameTime)}</h4> <h3><span id="hometeam" style="color:#e7b0a7">${homeTeamShort} (${homeTeamRating})</span> @ <span id="awayteam" style="color:#e7a7da">${awayTeamShort} (${awayTeamRating})</span> | <span style="color:#e7b0a7">${(homeTeamProb*100).toFixed(1)}% ${homeTeamShort}</span>`
