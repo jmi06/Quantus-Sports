@@ -34,7 +34,7 @@ function getDivision(division) {
 
 
 
-       
+
 }
 
 
@@ -48,175 +48,241 @@ function generate_table(division, data) {
 
 
 
-        orderData = data[division]
-        
-        const table = document.getElementById('data-table')
+    orderData = data[division]
 
-        const tableHead = document.getElementById("table-head");
-        const tableBody = document.getElementById("table-body");
+    const table = document.getElementById('data-table')
 
-        tableHead.innerText = ""
+    const tableHead = document.getElementById("table-head");
+    const tableBody = document.getElementById("table-body");
 
-        const headers = ['Pos', 'Team', 'Elo', 'Games', 'Record']
-        const header_stat = ["team_name", "elo", 'games', "record"]
+    tableHead.innerText = ""
 
-        // Do Playoff points and position separate
+    const headers = ['Pos', 'Team', 'Elo', 'Games', 'Record']
+    const header_stat = ["team_name", "elo", 'games', "record"]
 
-
+    // Do Playoff points and position separate
 
 
-        headers.forEach(header => {
-            const th = document.createElement("th");
-            th.textContent = header;
-            // th.onclick = () => {
-            //     if (th.textContent != "Pos" || th.textContent != "Team"){
-
-            //     // chosen_year = year; // Update chosen_year
-            //     highToLow = !highToLow   
-            //     sortTable(highToLow, header, data, division);
-            //     }
-            // };
-
-            tableHead.appendChild(th);
-        });
-
-        let new_stat;
-        tableBody.innerText = ""
-        Object.entries(orderData).forEach((team, index) => {
-            const tr = document.createElement("tr");
-
-            const positionTd = document.createElement("td");
-            positionTd.textContent = index + 1; // Position starts from 1, not 0
-            tr.appendChild(positionTd);
-
-            header_stat.forEach(stat => {
 
 
-                
-                if(stat == 'team_name'){
-                    new_stat = team[0]
-                }
-                if(stat == 'elo'){
-                    new_stat = team[1]['elo']
-                }
+    headers.forEach(header => {
+        const th = document.createElement("th");
+        th.textContent = header;
+        // th.onclick = () => {
+        //     if (th.textContent != "Pos" || th.textContent != "Team"){
 
-                if (stat == "games") {
-                    new_stat = team[1]['games'].length
+        //     // chosen_year = year; // Update chosen_year
+        //     highToLow = !highToLow   
+        //     sortTable(highToLow, header, data, division);
+        //     }
+        // };
+
+        tableHead.appendChild(th);
+    });
+
+    let new_stat;
+    tableBody.innerText = ""
+    Object.entries(orderData).forEach((team, index) => {
+        const tr = document.createElement("tr");
+
+        const positionTd = document.createElement("td");
+        positionTd.textContent = index + 1; // Position starts from 1, not 0
+        tr.appendChild(positionTd);
+
+        header_stat.forEach(stat => {
+
+            let team_name = "";
 
 
-                } 
-                if (stat == "record"){
-                    if(team[1]['record']){
 
-                        new_stat = team[1]['record'].split('-')
-                        new_stat = new_stat[0] / ( Number(new_stat[0]) + Number(new_stat[1]))
-                        new_stat = new_stat.toFixed(3);
+            if (stat == 'team_name') {
+                new_stat = team[0]
+                team_name = team[0];
+            }
 
-                        if(new_stat < 1){
-                            new_stat = new_stat.slice(1)
-                        }
+            if (stat == 'elo') {
+                new_stat = team[1]['elo']
+            }
+
+            if (stat == "games") {
+                new_stat = team[1]['games'].length
 
 
-                    } else{
-                        new_stat = '--'
+            }
+            if (stat == "record") {
+                if (team[1]['record']) {
+
+                    new_stat = team[1]['record'].split('-')
+                    new_stat = new_stat[0] / (Number(new_stat[0]) + Number(new_stat[1]))
+                    new_stat = new_stat.toFixed(3);
+
+                    if (new_stat < 1) {
+                        new_stat = new_stat.slice(1)
                     }
-                } 
-               
-                const td = document.createElement("td");
-                td.textContent = new_stat || ''; // Handle undefined properties
-                tr.appendChild(td);
-            });
 
 
-            tableBody.appendChild(tr);
+                } else {
+                    new_stat = '--'
+                }
+            }
 
+            const td = document.createElement("td");
+            td.textContent = new_stat || ''; // Handle undefined properties
 
+            if (team_name) {
+                td.classList.add('team_option')
+                td.addEventListener('click', () => { displayTeamData(team_name, data) })
+
+            }
+
+            tr.appendChild(td);
         });
 
 
+        tableBody.appendChild(tr);
 
 
-    } 
-
-
-
-
+    });
 
 
 
 
+}
 
 
-// function sortTable(highToLow, column, data, division){
 
 
-//     if(highToLow == true){
 
-        
 
-//             if(column == "Elo"){
-//                 new_column = "elo"
-//             } 
+
+function displayTeamData(team_name, data) {
+
+
+    document.getElementById('options').innerHTML = ""
+    document.getElementById('rank-table').innerHTML = ""
+
+    const container = document.createElement('div')
+    container.id = 'sub-container'
+    container.classList.add('sub-container')
+
+    container.innerHTML = `
+    <h3 style="margin: 2%; color:white;" onclick=""><a href =""style="color:white;"><-- Back</a></h3>
+
     
-//             if (column == "Games"){
-//                 new_column ="race_num"
-//             } 
-//             if (column == "Record"){
-//                 new_column ="games"
-//             } 
-
-            
-//             const dataArray = Object.entries(data[division]);
-
-//             let sorted_teams = dataArray.sort((a, b) => a[new_column] - b[new_column]);
-//             console.log(sorted_teams)
-//             const sortedData = Object.fromEntries(sorted_teams);
-//             console.log(sortedData)
-//             generate_table(sortedData, "All")
+    <h2 style="color: #e7bba7; margin: 2%;">${team_name}</h2>
 
 
+    <div id="rank-table">
+        <table id='data-table' style='width: 90%'>
+            <thead>
+                <tr id='table-head'>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Score</th>
+                <th>Result</th>
+
+                <th>Delta</th>
+               </tr>
+          </thead>
+                <tbody id="table-body">
+            </tbody>
+        </table>
+    
+    
+    </div>
+    
+    `
 
 
-        
+    const gamesPlayed = data['all'][team_name]['games']
 
 
-
-//     } else if(highToLow == false){
-
-        
-
-//             if(column == "Elo"){
-//                 new_column = "elo"
-//             } 
-//             if (column == "Name"){
-//                 new_column ="name"
-//             } 
-//             if (column == "Races"){
-//                 new_column ="race_num"
-//             } 
-//             if (column == "Playoff Points"){
-//                 new_column ="playoff_points"
-//             } 
-//             if(column == 'NASCAR Position'){
-//                 new_column = 'position'
-//             }
-//             const dataArray = Object.values(data);
-            
-//             let sorted_teams = dataArray.sort((a, b) => a[new_column] - b[new_column]);
-//             sorted_teams = sorted_teams.reverse()
-//             const sortedData = Object.fromEntries(sorted_teams);
-
-//             generate_table(sortedData, "All")
+    const dates = []
+    const opponents = []
+    const scores = []
+    const delta = []
+    const won = []
 
 
 
+    gamesPlayed.forEach((game) => {
+        currentGame = data['games'][game]
 
-         
+        dates.push(currentGame['date'])
+
+        if (currentGame['team_1']['team_name'] == team_name) {
+            opponents.push(currentGame['team_2']['team_name'])
+        } else {
+            opponents.push(currentGame['team_1']['team_name'])
+        }
+
+
+        if (currentGame['team_1']['team_name'] == team_name) {
+            scores.push(`${currentGame['team_1']['score']}-${currentGame['team_2']['score']}`)
+        } else {
+            scores.push(`${currentGame['team_2']['score']}-${currentGame['team_1']['score']}`)
+        }
+
+
+        if (currentGame['team_1']['team_name'] == team_name) {
+            delta.push(currentGame['team_1']['delta_elo'])
+        } else {
+            delta.push(currentGame['team_2']['delta_elo'])
+        }
+
+
+        if (currentGame['team_1']['team_name'] == team_name) {
+            won.push(currentGame['team_1']['winner'])
+        } else {
+            won.push(currentGame['team_2']['winner'])
+        }
+
+
+    })
+
+    scores.reverse()
+    dates.reverse()
+    opponents.reverse()
+    delta.reverse()
+    won.reverse()  
+
+    document.getElementById('footer').before(container)
+
+    for (let i = 0; i < dates.length; i++) {
+        const tr = document.createElement('tr')
+        let resultClass = '';
+        let resultText = '';
+
+        if (won[i] === true) {
+            resultClass = 'green';
+            resultText = 'W';
+        } else {
+            resultClass = 'red';
+            resultText = 'L';
+        }
+
+
+
+        tr.innerHTML = `
+        <td>${dates[i]}</td>
+        <td>vs. ${opponents[i]}</td>
+        <td>${scores[i]}</td>
+        <td class="${resultClass}">${resultText}</td>
+        <td class="${resultClass}">${delta[i]}</td>
+    `;
+
+
+        document.getElementById('table-body').append(tr)
+
+    }
 
 
 
 
 
-//     }
+}
 
-// }
+
+
+
+

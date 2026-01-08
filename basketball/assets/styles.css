@@ -2,22 +2,29 @@
 
 @media (max-width: 768px) {
 
-    #formulas{
+    #formulas {
         overflow-x: scroll;
     }
 }
 
 
-h1, h2, h3, h4, div, td, th, tr{
+h1,
+h2,
+h3,
+h4,
+div,
+td,
+th,
+tr {
     font-family: "Ubuntu", sans-serif;
 }
 
 
-#sub-container{
+#sub-container {
     margin-bottom: 5%;
 }
 
-#rank-table{
+#rank-table {
     margin-bottom: 5%;
 }
 
@@ -27,16 +34,16 @@ body {
     font-family: Arial, sans-serif;
 }
 
-html{
+html {
     background-color: #232931;
 
 }
 
-h3{
+h3 {
     font-weight: 400
 }
 
-h2{
+h2 {
     font-weight: 500;
 }
 
@@ -48,7 +55,7 @@ h2{
     align-items: center;
     background-color: #393E46;
     padding: 15px 20px;
-    margin:auto;
+    margin: auto;
     max-width: 85%;
     margin-top: 1%;
     border-radius: 15px;
@@ -69,6 +76,19 @@ h2{
     font-size: 1rem;
 }
 
+.sub-container {
+    border: #393E46 solid 2px;
+    border-radius: 6px;
+    max-width: 75%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.team_option {
+    cursor: pointer;
+}
+
 .nav-links a:visited {
     color: #F1EFEC;
 
@@ -79,44 +99,46 @@ h2{
 }
 
 
-#githubLink a{
-    color:#e7bba7;
+#githubLink a {
+    color: #e7bba7;
     text-decoration: none;
 }
 
 
-.mathEquations{
+.mathEquations {
     margin: 5%;
 }
 
-.mathEquations{
+.mathEquations {
     color: white;
     font-size: 1.4rem;
-    
+
 }
 
-#githubLink a:visited{
-    color:#e7bba7;
+#githubLink a:visited {
+    color: #e7bba7;
     text-decoration: none;
 }
 
 
 
-a:visited{
-    color:#e7bba7;
+a:visited {
+    color: #e7bba7;
     text-decoration: none;
 }
-a{
-    color:#e7bba7;
+
+a {
+    color: #e7bba7;
     text-decoration: none;
 
 }
-#series{
-    
-    margin:auto;
+
+#series {
+
+    margin: auto;
     margin-top: 1%;
     display: flex;
-    
+
     overflow-x: scroll;
     max-width: 90%;
     border-bottom: 2px solid #393E46;
@@ -124,26 +146,24 @@ a{
 
 }
 
-#series a{
+#series a {
     color: #F1EFEC;
     font-size: 0.7em;
     cursor: pointer;
 
-    
+
 
 }
 
 
-#series h2{
+#series h2 {
     padding-right: 10%;
     padding-left: 10%
-    
-
 }
 
-#year{
-    
-    margin:auto;
+#year {
+
+    margin: auto;
     margin-top: 1%;
     display: flex;
 
@@ -151,30 +171,30 @@ a{
     max-width: 90%;
     border-bottom: 2px solid #393E46;
     padding: 5px;
-    
+
 }
 
-#year a{
+#year a {
     color: white;
     font-size: 0.7em;
     cursor: pointer;
-    
+
 
 }
 
 
-#year h2{
+#year h2 {
     padding-right: 10%;
     padding-left: 10%;
-    margin:0.5%;
-    
+    margin: 0.5%;
+
 
 }
 
 
 #races {
     margin: auto;
-      margin-top: auto;
+    margin-top: auto;
     margin-top: 1%;
     display: flex;
     max-width: 75%;
@@ -184,24 +204,24 @@ a{
     padding-top: 10px;
     max-width: 90%;
 
-  }
+}
 
-#races a{
+#races a {
     color: #F1EFEC;
     font-size: 0.7em;
     cursor: pointer;
 
-    
+
 
 }
 
 
-#races h2{
+#races h2 {
     padding-right: 10%;
     padding-left: 10%;
-    
-    margin:0.5%;
-    
+
+    margin: 0.5%;
+
 
 }
 
@@ -210,7 +230,7 @@ a{
     background-color: #232931;
     border: #393E46 2px solid;
     border-radius: 6px;
-    margin:auto;
+    margin: auto;
     width: 70%;
 
 
@@ -229,51 +249,60 @@ a{
 
 }
 
-#data-table tr:nth-child(even){background-color: #2C333D;}
-#data-table tr:nth-child(odd){background-color: #37404A;}
-
-#data-table th, tr, td, table, tbody{
-    border-collapse: collapse;
-    padding:5px;
-    color:white;
-    padding-top: 10px;
-  padding-bottom: 10px;
+#data-table tr:nth-child(even) {
+    background-color: #2C333D;
 }
 
-#data-table tr:hover{
+#data-table tr:nth-child(odd) {
+    background-color: #37404A;
+}
+
+#data-table th,
+tr,
+td,
+table,
+tbody {
+    border-collapse: collapse;
+    padding: 5px;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#data-table tr:hover {
     background-color: #1C1F24;
 
 }
 
 
 
-#data-table thead  th{
+#data-table thead th {
     cursor: pointer;
 
 
 }
 
 
-.red{
+.red {
     color: #FF6B6B;
 }
 
-.green{
+.green {
     color: #4ECCA3;
 }
 
-#race-title{
+#race-title {
     color: #F1EFEC;
     text-align: center;
 }
 
-math{
-    margin:auto;
+math {
+    margin: auto;
 }
 
 
 
-#options ul li{
+#options ul li {
     list-style-type: none;
     /* display:inline-block; */
     margin: 1%;
@@ -282,7 +311,7 @@ math{
 
     border: 2px #393E46 solid;
 
-    
+
 }
 
 #options ul {
@@ -293,37 +322,37 @@ math{
     padding-left: 0px;
 }
 
-.division-option{
+.division-option {
     color: #F1EFEC;
     text-decoration: none;
 }
 
-.division-option:visited{
-    color:#F1EFEC;
+.division-option:visited {
+    color: #F1EFEC;
 }
 
 
-#predictions{
+#predictions {
     margin: 5%;
 }
 
-#predictions h4{
-    padding:0;
-    margin:0;
-    color:#F1EFEC;
+#predictions h4 {
+    padding: 0;
+    margin: 0;
+    color: #F1EFEC;
     font-weight: lighter;
     text-align: center;
 }
 
-#predictions h3{
-    padding:0;
-    margin:0;
-    margin-bottom:15px;
-    color:#F1EFEC;  
+#predictions h3 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 15px;
+    color: #F1EFEC;
     text-align: center;
 
 }
 
-#hometeam{
+#hometeam {
     text-decoration: wavy;
 }

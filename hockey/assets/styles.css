@@ -7,9 +7,19 @@
     }
 }
 
-
+.team_option {
+    cursor: pointer;
+}
 h1, h2, h3, h4, div, td, th, tr{
     font-family: "Ubuntu", sans-serif;
+}
+.sub-container {
+    border: #393E46 solid 2px;
+    border-radius: 6px;
+    max-width: 75%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 5%;
 }
 
 
