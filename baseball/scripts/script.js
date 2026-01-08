@@ -158,6 +158,10 @@ function generate_table(division, data) {
 
 
 function displayTeamData(team_name, data) {
+    const ranking = []
+    Object.keys(data['all']).forEach((teamname) => {
+        ranking.push(teamname);
+    });
 
 
     document.getElementById('options').innerHTML = ""
@@ -170,7 +174,7 @@ function displayTeamData(team_name, data) {
     container.innerHTML = `
     
     <h3 style="margin: 2%; color:white;" onclick=""><a href =""style="color:white;"><-- Back</a></h3>
-    <h2 style="color: #a7e7b1; margin: 2%;">${team_name}</h2>
+    <h2 style="color: #a7e7b1; margin: 2%;">#${ranking.indexOf(team_name)+1} ${team_name} (${data['all'][team_name]['record']})</h2>
 
 
     <div id="rank-table">
