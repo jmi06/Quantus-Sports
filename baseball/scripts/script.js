@@ -176,6 +176,9 @@ function displayTeamData(team_name, data) {
     <h3 style="margin: 2%; color:white;" onclick=""><a href =""style="color:white;"><-- Back</a></h3>
     <h2 style="color: #a7e7b1; margin: 2%;">#${ranking.indexOf(team_name)+1} ${team_name} (${data['all'][team_name]['record']})</h2>
 
+    <div style="width: 80%; height:50vh; margin:auto; margin-bottom: 1%">
+    <canvas id="graph"></canvas>
+    </div
 
     <div id="rank-table">
         <table id='data-table' style='width: 90%'>
@@ -197,6 +200,7 @@ function displayTeamData(team_name, data) {
     </div>
     
     `
+;
 
 
     const gamesPlayed = data['all'][team_name]['games']
@@ -206,6 +210,7 @@ function displayTeamData(team_name, data) {
     const opponents = []
     const scores = []
     const delta = []
+    const rating = []
     const won = []
 
 
@@ -242,6 +247,12 @@ function displayTeamData(team_name, data) {
             won.push(currentGame['team_2']['winner'])
         }
 
+        if (currentGame['team_1']['team_name'] == team_name) {
+            rating.push(currentGame['team_1']['elo_after'])
+        } else {
+            rating.push(currentGame['team_2']['elo_after'])
+        }
+
 
     })
 
@@ -250,6 +261,7 @@ function displayTeamData(team_name, data) {
     opponents.reverse()
     delta.reverse()
     won.reverse()
+    rating.reverse()   
 
     document.getElementById('footer').before(container)
 
@@ -283,6 +295,50 @@ function displayTeamData(team_name, data) {
 
 
 
+    console.log(rating)
+new Chart("graph", {
+  type: "line",
+  data: {
+    labels: dates,
+    datasets: [{
+    pointRadius: 0,
+      label: "Rating",
+      data: rating,
+      borderColor: "#a7e7b1",
+      backgroundColor: "#a7e7b1"
+    }]
+  },
+  options: {
+      responsive: true,
+  maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        labels: {
+          color: "white"
+        }
+      }
+    },
+    scales: {
+      x: {
+        reverse: true,
+        ticks: {
+          color: "white"
+        },
+        grid: {
+          color: "rgba(255,255,255,0.2)"
+        }
+      },
+      y: {
+        ticks: {
+          color: "white"
+        },
+        grid: {
+          color: "rgba(255,255,255,0.2)"
+        }
+      }
+    }
+  }
+});
 
 
 }

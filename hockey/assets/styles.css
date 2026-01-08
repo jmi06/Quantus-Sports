@@ -20,6 +20,8 @@ h1, h2, h3, h4, div, td, th, tr{
     margin: auto;
     margin-top: 1%;
     margin-bottom: 5%;
+    overflow-x:scroll;
+
 }
 
 

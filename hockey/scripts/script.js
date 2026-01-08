@@ -166,9 +166,14 @@ function displayTeamData(team_name, data) {
     container.classList.add('sub-container')
 
     container.innerHTML = `
+
+
     <h3 style="margin: 2%; color:white;" onclick=""><a href =""style="color:white;"><-- Back</a></h3>
     
     <h2 style="color: #c5a7e7; margin: 2%;">#${ranking.indexOf(team_name)+1} ${team_name} (${data['all'][team_name]['record']})</h2>
+    <div style="width: 80%; height:50vh; margin:auto; margin-bottom: 1%">
+    <canvas id="graph"></canvas>
+    </div
 
 
     <div id="rank-table">
@@ -201,6 +206,7 @@ function displayTeamData(team_name, data) {
     const scores = []
     const delta = []
     const won = []
+    const rating = []
 
 
 
@@ -235,6 +241,11 @@ function displayTeamData(team_name, data) {
         } else {
             won.push(currentGame['team_2']['winner'])
         }
+        if (currentGame['team_1']['team_name'] == team_name) {
+            rating.push(currentGame['team_1']['elo_after'])
+        } else {
+            rating.push(currentGame['team_2']['elo_after'])
+        }
 
 
     })
@@ -244,6 +255,7 @@ function displayTeamData(team_name, data) {
     opponents.reverse()
     delta.reverse()
     won.reverse()
+    rating.reverse()
 
     document.getElementById('footer').before(container)
 
@@ -274,6 +286,50 @@ function displayTeamData(team_name, data) {
         document.getElementById('table-body').append(tr)
 
     }
+new Chart("graph", {
+  type: "line",
+  data: {
+    labels: dates,
+    datasets: [{
+    pointRadius: 0,
+      label: "Rating",
+      data: rating,
+      borderColor: "#c5a7e7",
+      backgroundColor: "#c5a7e7"
+    }]
+  },
+  options: {
+      responsive: true,
+  maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        labels: {
+          color: "white"
+        }
+      }
+    },
+    scales: {
+      x: {
+        reverse: true,
+        ticks: {
+          color: "white"
+        },
+        grid: {
+          color: "rgba(255,255,255,0.2)"
+        }
+      },
+      y: {
+        ticks: {
+          color: "white"
+        },
+        grid: {
+          color: "rgba(255,255,255,0.2)"
+        }
+      }
+    }
+  }
+});
+
 
 
 
