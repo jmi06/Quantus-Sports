@@ -141,10 +141,3 @@ function getDivision(division, sport) {
 
 }
 
-
-// const teamRatings = getDivision('All')
-
-
-
-
-
