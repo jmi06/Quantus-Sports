@@ -32,9 +32,12 @@ function formatGameTime(dateString) {
     return `${weekday} ${month} ${day}${suffix} ${time}`;
 }
 
-async function getUpcomingGames(teamRatings) {
+async function getUpcomingGames(teamRatings, sport) {
+
+
     const acc = teamRatings['predictionAccuracy']['acc'].split('-')
     document.getElementById('accuracy').innerText = `Prediction Accuracy: ${acc[0]}-${acc[1]}-${acc[2]} (${  ((Number(acc[0])/(Number(acc[0])+Number(acc[1])))*100).toFixed(1)   }%)`
+
 
     const today = new Date()
     const future = new Date()
@@ -44,7 +47,7 @@ async function getUpcomingGames(teamRatings) {
 
 
     try {
-        const response = await fetch(`https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=${dashlessDate}-${dashlessFutureDate}`);
+        const response = await fetch(`https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=${dashlessDate}-${dashlessFutureDate}`);
 
         if (!response.ok) {
             throw new Error("Response was not ok");
@@ -109,17 +112,10 @@ async function getUpcomingGames(teamRatings) {
 
 }
 
-function getDivision(division) {
+function getDivision(division, sport) {
 
 
-
-
-
-
-
-
-
-    fetch('https://shy-recipe-1436.jmi06.workers.dev/')
+    fetch('https://falling-frog-ec91.jmi06.workers.dev/')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Response was not ok')
@@ -146,7 +142,7 @@ function getDivision(division) {
 }
 
 
-const teamRatings = getDivision('All')
+// const teamRatings = getDivision('All')
 
 
 

@@ -7,6 +7,41 @@
     }
 }
 
+#filters{
+    display:flex;
+    justify-content: center;
+}
+
+#filters > *{
+    margin: 5px;
+    margin-bottom: 1%;      
+}
+
+.playerTypeToggle{
+  display: flex;
+  border: 0px;
+  justify-content: center;
+}
+
+.playerTypeToggle fieldset{
+  display: flex;
+  border: 0px;
+justify-content: center;
+flex-direction: row;
+  font-family: 'Ubuntu';
+
+}
+
+.playerTypeToggle label{
+  padding: 1%;
+
+    color: #F1EFEC;
+  font-family: 'Ubuntu';
+
+}
+
+
+
 
 h1, h2, h3, h4, div, td, th, tr{
     font-family: "Ubuntu", sans-serif;
@@ -303,6 +338,8 @@ math{
     flex-direction: row;
     flex-wrap: wrap;
     padding-left: 0px;
+    margin-bottom: 0px;
+
 }
 
 .division-option{

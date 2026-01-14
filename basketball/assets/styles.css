@@ -322,6 +322,7 @@ math {
     flex-direction: row;
     flex-wrap: wrap;
     padding-left: 0px;
+    margin-bottom: 0px;
 }
 
 .division-option {

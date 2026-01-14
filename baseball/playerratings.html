@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/baseball/assets/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Quantus: Baseball</title>
+
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+
+
+    <div id="options">
+
+
+    </div>
+
+    <div id="filters" style="display:none;">
+        <input type="search" title="Search..." id="searchBar">
+        <select name="pos-select" id="pos-select" >
+            <option value="All" selected>All</option>
+            <option value="1B">1B</option>
+            <option value="2B">2B</option>
+            <option value="3B">3B</option>
+            <option value="C">C</option>
+            <option value="P">P</option>
+            <option value="SS">SS</option>
+            <option value="LF">LF</option>
+            <option value="RF">RF</option>
+            <option value="CF">CF</option>
+            <option value="DH">DH</option>
+
+        </select>
+
+    <select name="team-select" id="team-select">
+        <option value="All" selected>All</option>
+        <option value="ARI">ARI</option>
+        <option value="ATL">ATL</option>
+        <option value="BAL">BAL</option>
+        <option value="BOS">BOS</option>
+        <option value="CHC">CHC</option>
+        <option value="CIN">CIN</option>
+        <option value="CLE">CLE</option>
+        <option value="COL">COL</option>
+        <option value="CWS">CWS</option>
+        <option value="DET">DET</option>
+        <option value="HOU">HOU</option>
+        <option value="KC">KC</option>
+        <option value="LAA">LAA</option>
+        <option value="LAD">LAD</option>
+        <option value="MIA">MIA</option>
+        <option value="MIL">MIL</option>
+        <option value="MIN">MIN</option>
+        <option value="NYM">NYM</option>
+        <option value="NYY">NYY</option>
+        <option value="OAK">OAK</option>
+        <option value="PHI">PHI</option>
+        <option value="PIT">PIT</option>
+        <option value="SD">SD</option>
+        <option value="SEA">SEA</option>
+        <option value="SF">SF</option>
+        <option value="STL">STL</option>
+        <option value="TB">TB</option>
+        <option value="TEX">TEX</option>
+        <option value="TOR">TOR</option>
+        <option value="WAS">WAS</option>
+    </select>
+        <!-- <select name="division-select" id="division-select"></select> -->
+        <div>
+            <input type="checkbox" name="qualified" id="qualified">
+            
+            <label for="qualified" style="color:white; font-family: 'Ubuntu';">Qualified</label>
+        </div>
+
+
+    </div>
+
+    <div id="rank-table">
+
+
+
+        <h2 id="race-title"></h2>
+        <table id="data-table">
+            <thead>
+                <tr id="table-head"></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+
+
+    </div>
+
+    <h3 style="text-align: center; color:white;" id="footer"><a id="githubLink" href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+
+
+    <script src="scripts/playerratings.js"></script>
+    <script>getDivision('2025', 'MLBbaseball')</script>
+    <script src="/baseball/components/header.js"></script>
+
+
+</body>
+</html>
