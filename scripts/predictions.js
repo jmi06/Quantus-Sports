@@ -1,9 +1,47 @@
 let highToLow;
 
-getDivision('all')
 
 let teamData = {}
 let futureGames = {}
+
+
+const config = {
+
+    "NBAbasketball": {
+        "url": "https://dark-mountain-23d8.jmi06.workers.dev/",
+        "league": "NBA",
+        "sport": "basketball",
+        "color": "#e7bba7",
+        "divisions": { "All Teams": "all", "Eastern": "Eastern", "Western": "Western" },
+
+    },
+
+    "NHLhockey": {
+        "url": "https://shy-recipe-1436.jmi06.workers.dev/",
+        "league": "NHL",
+        "sport": "hockey",
+        "color": "#c5a7e7",
+        
+        "divisions": { "All Teams": "all", "Eastern": "Eastern", "Eastern Atlantic": "Eastern Atlantic", "Eastern Metro": "Eastern Metropolitan", "Western": "Western", "Western Central": "Western Central", "Western Pacific": "Western Pacific" }
+
+
+    },
+
+    "MLBbaseball": {
+        "url": "https://falling-frog-ec91.jmi06.workers.dev",
+        "league": "MLB",
+        "sport": "baseball",
+        "color": "#a7e7b1",
+        
+        "divisions": { "All Teams": "all", "AL": "AL", "AL East": "ALEast", "AL Central": "ALCentral", "AL West": "ALWest", "NL": "NL", "NL East": "NL East", "NL Central": "NL Central", "NL West": "NL West" }
+
+
+    }
+
+
+
+}
+
 
 function formatGameTime(dateString) {
     const date = new Date(dateString);
@@ -33,7 +71,7 @@ function formatGameTime(dateString) {
 }
 
 async function getUpcomingGames(teamRatings, sport) {
-
+    console.log(sport)
 
     const acc = teamRatings['predictionAccuracy']['acc'].split('-')
     document.getElementById('accuracy').innerText = `Prediction Accuracy: ${acc[0]}-${acc[1]}-${acc[2]} (${  ((Number(acc[0])/(Number(acc[0])+Number(acc[1])))*100).toFixed(1)   }%)`
@@ -47,7 +85,7 @@ async function getUpcomingGames(teamRatings, sport) {
 
 
     try {
-        const response = await fetch(`https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=${dashlessDate}-${dashlessFutureDate}`);
+       const response = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${config[sport]['sport']}/${config[sport]['league'].toLowerCase()}/scoreboard?dates=${dashlessDate}-${dashlessFutureDate}`);
 
         if (!response.ok) {
             throw new Error("Response was not ok");
@@ -115,7 +153,7 @@ async function getUpcomingGames(teamRatings, sport) {
 function getDivision(division, sport) {
 
 
-    fetch('https://falling-frog-ec91.jmi06.workers.dev/')
+    fetch(config[sport]['url'])
         .then(response => {
             if (!response.ok) {
                 throw new Error('Response was not ok')
@@ -126,7 +164,7 @@ function getDivision(division, sport) {
 
         .then(data => {
             
-            getUpcomingGames(data)
+            getUpcomingGames(data, sport)
 
 
 
