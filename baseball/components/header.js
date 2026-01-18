@@ -8,6 +8,7 @@ const headerContent = `
     <div class="nav-links">
         <a href="/baseball/ratings.html">Ratings</a>
         <a href="/baseball/playerratings.html">PlayerRatings</a>
+        <a href="/baseball/powerrankings.html">PowerRankings</a>
 
         <a href="/baseball/predictions.html">Predictions</a>
         <a href="/baseball/index.html">About</a>

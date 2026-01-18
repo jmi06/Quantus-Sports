@@ -24,6 +24,42 @@ h1, h2, h3, h4, div, td, th, tr{
 
 }
 
+.date-range {
+  /* Reset default browser styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  /* Match the text style */
+  background-color: #232931;
+  color: #b599e0; /* Match your purple hex code */
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  
+  /* Layout and Border */
+  border: 2px solid rgba(181, 153, 224, 0.3);
+  border-radius: 5px;
+  padding: 0 10px;
+  cursor: pointer;
+  outline: none;
+  
+  /* Optional: Add a subtle transition */
+  transition: border-color 0.2s ease;
+}
+
+.date-range:hover {
+  border-color: #b599e0;
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+
+
 
 #sub-container{
     margin-bottom: 5%;

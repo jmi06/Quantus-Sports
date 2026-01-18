@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>PowerRankings - QuantusBaseball</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+
+    
+    <div id="nav-placeholder"></div>
+    
+    
+    
+    <h1 style=" color: #a7e7b1; margin: 2%; margin-top: 4%; text-align: center;"><select class="date-range" onchange="getTeams('all', 'MLBbaseball')" id="date-range"><option value="7" selected>7</option><option value="14">14</option><option value="30">30</option> </option> </select>-Day Power Rankings</h1>
+    <h4 style="color: white; text-align:center; max-width: 70%; margin: auto; font-weight: lighter;">Quantus PowerRankings use the same formula as season-ratings, except they are only for certain periods of time, and the K-value gets jacked up.</h3>
+    <div id="options">
+
+    </div>
+
+
+    <div id="rank-table">
+
+
+
+        <h2 id="race-title"></h2>
+        <table id="data-table">
+            <thead>
+                <tr id="table-head"></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+
+
+    </div>
+    <h3 style="text-align: center; color:white;" id="footer"><a id="githubLink" href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+
+
+    <script src="/scripts/powerrankings.js"></script>
+    <script>getTeams('all', 'MLBbaseball')</script>
+
+    <script src="/baseball/components/header.js"></script>
+
+
+
+</body>
+</html>

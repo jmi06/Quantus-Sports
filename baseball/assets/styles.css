@@ -319,6 +319,34 @@ math{
 }
 
 
+.date-range {
+  /* Reset default browser styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  /* Match the text style */
+  background-color: #232931;
+  color: #a7e7b1; /* Match your purple hex code */
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  
+  /* Layout and Border */
+  border: 2px solid #a7e7b17d;
+  border-radius: 5px;
+  padding: 0 10px;
+  cursor: pointer;
+  outline: none;
+  
+  /* Optional: Add a subtle transition */
+  transition: border-color 0.2s ease;
+}
+
+.date-range:hover {
+  border-color: #a7e7b1;
+}
 
 #options ul li{
     list-style-type: none;
