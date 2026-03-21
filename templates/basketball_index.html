@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/basketball.css') }}">
+
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include "basketballheader.html" %}
+    <main>
+
+        <div id="sub-container">
+            <h1 class="basketball-title">QuantusBasketball</h1>
+
+            <div class="basketball-nav">
+                <div><span><a href="/basketball/ratings">Ratings</a></span></div>
+                <div><span><a href="/basketball/powerrankings">PowerRankings</a></span></div>
+                <div><span><a href="/basketball/predictions">Predictions</a></span></div>
+            </div>
+
+            <p class="basketball-subtitle">Follow QuantusBasketball on BlueSky 🦋</p>
+
+
+
+        </div>
+
+        <div id="ticker"></div>
+
+        <div id="top-ratings">
+
+            <div id="top-ratings-nba" class="top-ratings-class">
+                <h2>Ratings</h2>
+                {% for team in ratings %}
+                <h3>
+                   {{loop.index}}. {{team[0]}} - {{team[1]}}
+                </h3>
+                {% endfor %}
+
+            </div>
+            <div id="top-ratings-nba" class="top-ratings-class">
+                <h2>7 Day PowerRankings</h2>
+                {% for key, value in powerranking[:5] %}
+                <h3>
+                    {{loop.index}}. {{key}} - {{value['rating']}}
+                </h3>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="/components/header.js"></script>
+
+</body>
+
+</html>

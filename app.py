@@ -1,6 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 import os
 import requests
+import time
+from datetime import timezone, datetime, timedelta
+from zoneinfo import ZoneInfo
 
 
 app = Flask(__name__)
@@ -18,6 +21,44 @@ cache={
         },
         "timestamp":0
     },
+    "NBAbasketball":{
+        "rankings":{
+            "data":{},
+            "timestamp": 0,
+        },
+        "7daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "timestamp":0
+    },
+    "NHLhockey":{
+        "rankings":{
+            "data":{},
+            "timestamp": 0,
+        },
+        "7daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+
+        "timestamp":0
+    },
+    "MLBbaseball":{
+        "rankings":{
+            "data":{},
+            "timestamp": 0,
+        },
+        "7daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+
+
+        "timestamp":0
+    },
+
+
 
 }
 
@@ -42,16 +83,96 @@ def fill_ticker():
 
 def fetch_ratings(sport):
     url=""
-    if sport == "NHLHockey":
+    if sport == "NHLhockey":
         url = "https://shy-recipe-1436.jmi06.workers.dev/"
-    elif sport == "NBABasketball":
+    elif sport == "NBAbasketball":
         url = "https://dark-mountain-23d8.jmi06.workers.dev/"
-    elif sport == "MLBBaseball":
+    elif sport == "MLBbaseball":
         url = "https://falling-frog-ec91.jmi06.workers.dev/"
 
-    response = requests.get(url)
-    return response.json()
+    now = int(datetime.now().timestamp())
+    deltatime = abs(int(cache[sport]['rankings']['timestamp'])-now)
 
+    if deltatime < 300:
+        print('from cache')
+        return cache[sport]['rankings']['data']
+    else:
+        print('fetching it')
+        response = requests.get(url)
+        cache[sport]['rankings']['data'] = response.json()
+        cache[sport]['rankings']['timestamp'] = now
+        return response.json()
+
+
+def seven_day_powerrankings(sport):
+    if sport == "MLBbaseball":
+        K_mult = 64
+    elif sport == "NHLhockey":
+        K_mult = 128
+    elif sport == "NBAbasketball":
+        K_mult = 32 
+
+
+    now = int(datetime.now().timestamp())
+    deltatime = abs(int(cache[sport]['7daypowerrankings']['timestamp'])-now)
+
+    if deltatime < 300:
+        print('from cache power')
+        league_data = cache[sport]['7daypowerrankings']['data']
+    else:
+        print('fetching it power')
+        league_data = fetch_ratings(sport)
+        cache[sport]['7daypowerrankings']['data'] = league_data
+        cache[sport]['7daypowerrankings']['timestamp'] = now
+    
+    team_ratings = {}
+    relevant_games = []
+    eastern = ZoneInfo("America/New_York")
+    now = datetime.now(eastern)
+    games = league_data['games']
+
+    for key, value in league_data['all'].items():
+        team_ratings[key] = {"rating": value['elo'], "name": key}
+
+    for key, value in league_data['games'].items():
+        game_timestamp = datetime.fromisoformat(value["date"]).astimezone(eastern)
+        seven_days_ago = now - timedelta(days=7)
+        
+        if seven_days_ago <= game_timestamp <= now:
+            relevant_games.append(key)
+
+
+    for game in relevant_games:
+        team1rating = team_ratings[games[game]["team_1"]["team_name"]]['rating']
+        team2rating = team_ratings[games[game]["team_2"]["team_name"]]['rating']
+
+        team1winprob = 1/(1+10**((float(team2rating)-float(team1rating))/400))
+        team2winprob = 1/(1+10**((float(team1rating)-float(team2rating))/400))
+
+        if games[game]["team_1"]['winner'] == False:
+            team1W = 0
+            team2W = 1
+        else:
+            team1W = 1
+            team2W = 0
+            
+        K = K_mult * games[game]["points_diff"]
+        
+        team1newrating = team1rating + K * (team1W-team1winprob)
+        team2newrating = team2rating + K * (team2W-team2winprob)
+
+        team_ratings[games[game]["team_1"]["team_name"]]['rating'] = round(team1newrating,2)
+        team_ratings[games[game]["team_2"]["team_name"]]['rating'] = round(team2newrating,2)
+
+
+    sorted_teams = dict(sorted(
+        team_ratings.items(), 
+        key=lambda item: item[1]['rating'], 
+        reverse=True
+    ))
+    print(list(sorted_teams.items()))
+    return list(sorted_teams.items())
+# return list(team_ratings.items())
 
 
 def get_top_5(sport):
@@ -64,18 +185,47 @@ def get_top_5(sport):
 
 @app.get("/")
 def home():
-    nba_top_5 = get_top_5(fetch_ratings("NBABasketball"))
-    mlb_top_5 = get_top_5(fetch_ratings("MLBBaseball"))
-    nhl_top_5 = get_top_5(fetch_ratings("NHLHockey"))
+    nba_top_5 = get_top_5(fetch_ratings("NBAbasketball"))
+    mlb_top_5 = get_top_5(fetch_ratings("MLBbaseball"))
+    nhl_top_5 = get_top_5(fetch_ratings("NHLhockey"))
 
     ticker_info = fill_ticker()
 
     return render_template("index.html", nba=nba_top_5, nhl=nhl_top_5, mlb=mlb_top_5, ticker=ticker_info)
 
-@app.get("/")
+@app.get("/basketball/ratings")
 def nba_ratings():
-    nba_ratings = fetch_ratings("NBABasketball")
-    return render_template("index.html", nba=nba_top_5)
+    nba_ratings = fetch_ratings("NBAbasketball")
+    return render_template("basketball_ratings.html", nba=nba_ratings)
+
+@app.get("/basketball")
+def basketball_home():
+    nba_top_5 = get_top_5(fetch_ratings("NBAbasketball"))
+    nba_powerrankings = seven_day_powerrankings("NBAbasketball")
+
+    return render_template("basketball_index.html", ratings=nba_top_5, powerranking=nba_powerrankings)
+
+
+@app.get("/<sport>/divisions")
+def filter_divisions(sport):
+    division = request.args.get("division")
+    teams = fetch_ratings(sport)
+
+    if division == "all":
+        division_teams = teams['all']
+    elif division == "Eastern":
+        division_teams = teams['Eastern']
+    elif division == "Western":
+        division_teams = teams['Western']
+    else:
+        division_teams = teams['all']
+
+    sorted_teams = sorted(
+        division_teams.items(),
+        key=lambda x: x[1]['elo'], 
+        reverse=True
+    )
+    return jsonify(sorted_teams)
 
 
 if __name__ == "__main__":

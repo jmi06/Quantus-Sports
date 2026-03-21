@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/basketball.css') }}">
+
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include "basketballheader.html" %}
+    <main>
+
+        <div id="sub-container">
+            <h2 class="page-titles">Ratings</h2>
+            <h3 class="basketball-subtitle">Updated QuantusBasketball Ratings</h3>
+
+
+
+
+
+
+        </div>
+
+
+        <div id="sub-container">
+
+            <div id="nba-ratings" class="nba-ratings">
+                <div id="division-select">
+                    <a class="division-option" onclick='updateRatingsTable("all", "NBAbasketball"); return false'>All</a>
+                    <a class="division-option" onclick='updateRatingsTable("Eastern", "NBAbasketball"); return false'>Eastern</a>
+                    <a class="division-option" onclick='updateRatingsTable("Western", "NBAbasketball"); return false'>Western</a>
+                    
+                </div>
+                
+                <table id="data-table">
+                    <thead>
+                        <tr id="table-head"></tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+
+
+
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>updateRatingsTable("all", "NBAbasketball")</script>
+
+</body>
+
+</html>
