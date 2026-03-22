@@ -198,12 +198,19 @@ def nba_ratings():
     nba_ratings = fetch_ratings("NBAbasketball")
     return render_template("basketball_ratings.html", nba=nba_ratings)
 
+
+
 @app.get("/basketball")
 def basketball_home():
     nba_top_5 = get_top_5(fetch_ratings("NBAbasketball"))
     nba_powerrankings = seven_day_powerrankings("NBAbasketball")
 
     return render_template("basketball_index.html", ratings=nba_top_5, powerranking=nba_powerrankings)
+
+@app.get("/basketball/powerrankings")
+def nba_powerrankings():
+    nba_powerrankings = seven_day_powerrankings("NBAbasketball")
+    return render_template("basketball_powerrankings.html", nba=nba_powerrankings)
 
 
 @app.get("/<sport>/divisions")
@@ -226,6 +233,15 @@ def filter_divisions(sport):
         reverse=True
     )
     return jsonify(sorted_teams)
+
+
+@app.get("/<sport>/powerrankingsdata")
+def pr_data(sport):
+    teams = seven_day_powerrankings(sport)
+
+
+
+    return jsonify(teams)
 
 
 if __name__ == "__main__":

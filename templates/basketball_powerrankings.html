@@ -16,8 +16,9 @@
     <main>
 
         <div id="sub-container">
-            <h2 class="page-titles">Ratings</h2>
-            <h3 class="basketball-subtitle">Updated QuantusBasketball Ratings</h3>
+            <h2 class="page-titles">PowerRankings</h2>
+            <h3 class="basketball-subtitle">7 Day NBA PowerRankings</h3>
+
 
 
 
@@ -30,9 +31,9 @@
 
             <div id="nba-ratings" class="nba-ratings">
                 <div id="division-select">
-                    <a class="division-option" onclick='updateRatingsTable("all", "NBAbasketball"); return false'>All</a>
-                    <a class="division-option" onclick='updateRatingsTable("Eastern", "NBAbasketball"); return false'>Eastern</a>
-                    <a class="division-option" onclick='updateRatingsTable("Western", "NBAbasketball"); return false'>Western</a>
+                    <a class="division-option" onclick='updateRatingsTablePR("all", "NBAbasketball"); return false'>All</a>
+                    <a class="division-option" onclick='updateRatingsTablePR("Eastern", "NBAbasketball"); return false'>Eastern</a>
+                    <a class="division-option" onclick='updateRatingsTablePR("Western", "NBAbasketball"); return false'>Western</a>
                     
                 </div>
                 
@@ -42,8 +43,6 @@
                             <td>#</td>
                             <td>Team</td>
                             <td>Rating</td>
-                            <td>Games Played</td>
-                            <td>PCT</td>
 
                         </tr>
                     </thead>
@@ -65,7 +64,7 @@
     </main>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script>updateRatingsTable("all", "NBAbasketball")</script>
+    <script>updateRatingsTablePR("all", "NBAbasketball")</script>
 
 </body>
 

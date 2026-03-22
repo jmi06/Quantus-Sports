@@ -22,6 +22,27 @@ async function updateRatingsTable(division, sport){
     
 }
 
+async function updateRatingsTablePR(division, sport){
+    const response = await fetch(`/${sport}/powerrankingsdata`)
+    const data = await response.json()
+    const table = document.getElementById('table-body')
+
+    table.innerHTML = ''
+
+    Object.values(data).forEach((element,index) => {
+        const tr = document.createElement('tr')
+        tr.innerHTML = `
+            <td>${index+1}</td>
+            <td>${element[0]}</td>
+            <td>${element[1]['rating']}</td>
+        `   
+        
+        table.appendChild(tr)
+    });
+
+    
+}
+
 function getPCT(record,sport){
     if (sport == "NHLhockey"){
         const fields = record.split('-')

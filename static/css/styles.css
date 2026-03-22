@@ -366,6 +366,10 @@ a {
 
 }
 
+thead{
+    background-color: rgba(0,0,0,0.3);
+}
+
 
 #data-table {
     /* border: #a4a3a3 2px solid; */
@@ -380,6 +384,8 @@ a {
 
 #data-table td{
     font-family: "Roboto Mono", monospace;
+    font-weight: 500;
+    color: #ffcc99;
 
 }
 
