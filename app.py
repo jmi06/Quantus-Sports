@@ -30,6 +30,18 @@ cache={
             "data":{},
             "timestamp":0,
         },
+        "14daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "30daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "games":{
+            "data":{},
+            "timestamp":0,
+        },
         "timestamp":0
     },
     "NHLhockey":{
@@ -38,6 +50,18 @@ cache={
             "timestamp": 0,
         },
         "7daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "14daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "30daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "games":{
             "data":{},
             "timestamp":0,
         },
@@ -50,6 +74,18 @@ cache={
             "timestamp": 0,
         },
         "7daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "14daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "30daypowerrankings":{
+            "data":{},
+            "timestamp":0,
+        },
+        "games":{
             "data":{},
             "timestamp":0,
         },
@@ -102,6 +138,7 @@ def fetch_ratings(sport):
         cache[sport]['rankings']['data'] = response.json()
         cache[sport]['rankings']['timestamp'] = now
         return response.json()
+
 
 
 def seven_day_powerrankings(sport):
@@ -172,7 +209,149 @@ def seven_day_powerrankings(sport):
     ))
     print(list(sorted_teams.items()))
     return list(sorted_teams.items())
-# return list(team_ratings.items())
+
+
+
+def fourteen_day_powerrankings(sport):
+    if sport == "MLBbaseball":
+        K_mult = 64
+    elif sport == "NHLhockey":
+        K_mult = 128
+    elif sport == "NBAbasketball":
+        K_mult = 32 
+
+
+    now = int(datetime.now().timestamp())
+    deltatime = abs(int(cache[sport]['14daypowerrankings']['timestamp'])-now)
+
+    if deltatime < 300:
+        print('from cache power')
+        league_data = cache[sport]['14daypowerrankings']['data']
+    else:
+        print('fetching it power')
+        league_data = fetch_ratings(sport)
+        cache[sport]['14daypowerrankings']['data'] = league_data
+        cache[sport]['14daypowerrankings']['timestamp'] = now
+    
+    team_ratings = {}
+    relevant_games = []
+    eastern = ZoneInfo("America/New_York")
+    now = datetime.now(eastern)
+    games = league_data['games']
+
+    for key, value in league_data['all'].items():
+        team_ratings[key] = {"rating": value['elo'], "name": key}
+
+    for key, value in league_data['games'].items():
+        game_timestamp = datetime.fromisoformat(value["date"]).astimezone(eastern)
+        seven_days_ago = now - timedelta(days=14)
+        
+        if seven_days_ago <= game_timestamp <= now:
+            relevant_games.append(key)
+
+
+    for game in relevant_games:
+        team1rating = team_ratings[games[game]["team_1"]["team_name"]]['rating']
+        team2rating = team_ratings[games[game]["team_2"]["team_name"]]['rating']
+
+        team1winprob = 1/(1+10**((float(team2rating)-float(team1rating))/400))
+        team2winprob = 1/(1+10**((float(team1rating)-float(team2rating))/400))
+
+        if games[game]["team_1"]['winner'] == False:
+            team1W = 0
+            team2W = 1
+        else:
+            team1W = 1
+            team2W = 0
+            
+        K = K_mult * games[game]["points_diff"]
+        
+        team1newrating = team1rating + K * (team1W-team1winprob)
+        team2newrating = team2rating + K * (team2W-team2winprob)
+
+        team_ratings[games[game]["team_1"]["team_name"]]['rating'] = round(team1newrating,2)
+        team_ratings[games[game]["team_2"]["team_name"]]['rating'] = round(team2newrating,2)
+
+
+    sorted_teams = dict(sorted(
+        team_ratings.items(), 
+        key=lambda item: item[1]['rating'], 
+        reverse=True
+    ))
+    print(list(sorted_teams.items()))
+    return list(sorted_teams.items())
+
+
+
+def thirty_day_powerrankings(sport):
+    if sport == "MLBbaseball":
+        K_mult = 64
+    elif sport == "NHLhockey":
+        K_mult = 128
+    elif sport == "NBAbasketball":
+        K_mult = 32 
+
+
+    now = int(datetime.now().timestamp())
+    deltatime = abs(int(cache[sport]['30daypowerrankings']['timestamp'])-now)
+
+    if deltatime < 300:
+        print('from cache power')
+        league_data = cache[sport]['30daypowerrankings']['data']
+    else:
+        print('fetching it power')
+        league_data = fetch_ratings(sport)
+        cache[sport]['30daypowerrankings']['data'] = league_data
+        cache[sport]['30daypowerrankings']['timestamp'] = now
+    
+    team_ratings = {}
+    relevant_games = []
+    eastern = ZoneInfo("America/New_York")
+    now = datetime.now(eastern)
+    games = league_data['games']
+
+    for key, value in league_data['all'].items():
+        team_ratings[key] = {"rating": value['elo'], "name": key}
+
+    for key, value in league_data['games'].items():
+        game_timestamp = datetime.fromisoformat(value["date"]).astimezone(eastern)
+        seven_days_ago = now - timedelta(days=30)
+        
+        if seven_days_ago <= game_timestamp <= now:
+            relevant_games.append(key)
+
+
+    for game in relevant_games:
+        team1rating = team_ratings[games[game]["team_1"]["team_name"]]['rating']
+        team2rating = team_ratings[games[game]["team_2"]["team_name"]]['rating']
+
+        team1winprob = 1/(1+10**((float(team2rating)-float(team1rating))/400))
+        team2winprob = 1/(1+10**((float(team1rating)-float(team2rating))/400))
+
+        if games[game]["team_1"]['winner'] == False:
+            team1W = 0
+            team2W = 1
+        else:
+            team1W = 1
+            team2W = 0
+            
+        K = K_mult * games[game]["points_diff"]
+        
+        team1newrating = team1rating + K * (team1W-team1winprob)
+        team2newrating = team2rating + K * (team2W-team2winprob)
+
+        team_ratings[games[game]["team_1"]["team_name"]]['rating'] = round(team1newrating,2)
+        team_ratings[games[game]["team_2"]["team_name"]]['rating'] = round(team2newrating,2)
+
+
+    sorted_teams = dict(sorted(
+        team_ratings.items(), 
+        key=lambda item: item[1]['rating'], 
+        reverse=True
+    ))
+    print(list(sorted_teams.items()))
+    return list(sorted_teams.items())
+
 
 
 def get_top_5(sport):
@@ -209,8 +388,62 @@ def basketball_home():
 
 @app.get("/basketball/powerrankings")
 def nba_powerrankings():
-    nba_powerrankings = seven_day_powerrankings("NBAbasketball")
-    return render_template("basketball_powerrankings.html", nba=nba_powerrankings)
+    nba_powerrankings7day = seven_day_powerrankings("NBAbasketball")
+    nba_powerrankings14day = fourteen_day_powerrankings("NBAbasketball")
+    nba_powerrankings30day = thirty_day_powerrankings("NBAbasketball")
+
+    return render_template("basketball_powerrankings.html", sevenday=nba_powerrankings7day, fourteenday=nba_powerrankings14day, thirtyday=nba_powerrankings30day)
+
+
+@app.get("/basketball/team")
+def display_team_data():
+    team = request.args.get("team")
+    data = fetch_ratings("NBAbasketball")
+    game_ids = data['all'][team]['games']
+    games = data['games']
+    team_record = data['all'][team]['record']
+    table_data = []
+    print(len(game_ids), "num games")
+    for id in game_ids:
+        current_game = games[id]
+        date = current_game["date"]
+        title_prefix = ""
+        opponent = ""
+        score = ""
+        result = ""
+        if current_game['team_1']['team_name'] == team:
+            #the game is at home
+            title_prefix = "vs. "
+            opponent = title_prefix + current_game['team_2']['team_name']
+            score = f"{current_game["team_1"]['score']}-{current_game["team_2"]['score']}"
+
+            if current_game['team_1']['winner'] == True:
+                result = 'W'
+            else:
+                result = 'L'
+
+            delta_elo = current_game['team_1']['delta_elo']
+
+        else:
+            title_prefix = "@ "
+            opponent = title_prefix + current_game['team_1']['team_name']
+            score = f"{current_game["team_2"]['score']}-{current_game["team_1"]['score']}"
+
+            if current_game['team_2']['winner'] == True:
+                result = 'W'
+            else:
+                result = 'L'
+
+            delta_elo = current_game['team_2']['delta_elo']
+
+        table_data.append([date, opponent, score, result, delta_elo])
+    table_data.reverse()
+    print(len(table_data))
+    return render_template("basketball_team_info.html", table_data=table_data, team_name=team, record=team_record)
+
+            
+        
+        
 
 
 @app.get("/<sport>/divisions")
@@ -237,8 +470,15 @@ def filter_divisions(sport):
 
 @app.get("/<sport>/powerrankingsdata")
 def pr_data(sport):
-    teams = seven_day_powerrankings(sport)
+    sevenday = seven_day_powerrankings(sport)
+    fourteenday = fourteen_day_powerrankings(sport)
+    thirtyday = thirty_day_powerrankings(sport)
 
+    teams={
+        "7day":sevenday,
+        "14day": fourteenday,
+        "30day": thirtyday
+    }
 
 
     return jsonify(teams)

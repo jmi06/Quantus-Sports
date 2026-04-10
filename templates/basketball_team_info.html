@@ -16,37 +16,35 @@
     <main>
 
         <div id="sub-container" style="border:none;">
-            <h2 class="page-titles">PowerRankings</h2>
-            <h3 class="basketball-subtitle">7 Day NBA PowerRankings</h3>
-
-
-
-
-
+            <h2 class="page-titles">{{team_name}}</h2>
+            <h3 class="basketball-subtitle">{{record}}</h3>
 
         </div>
 
+        <div id="sub-container" style="border:none;">
 
-        <div id="sub-container">
-
-            <div id="nba-ratings" class="nba-ratings">
-                <div id="division-select">
-                    <a class="division-option" id="7day" onclick='updateRatingsTablePR("7day", "NBAbasketball"); return false'>7 Days</a>
-                    <a class="division-option" id="14day" onclick='updateRatingsTablePR("14day", "NBAbasketball"); return false'>14 Days</a>
-                    <a class="division-option" id="30day" onclick='updateRatingsTablePR("30day", "NBAbasketball"); return false'>30 Days</a>
-                    
-                </div>
+            <div id="nba-ratings" class="nba-ratings" >
                 
                 <table id="data-table">
                     <thead>
                         <tr id="table-head">
-                            <td>#</td>
-                            <td>Team</td>
-                            <td>Rating</td>
-
+                            <td>Date</td>
+                            <td>Opponent</td>
+                            <td>Score</td>
+                            <td>Result</td>
+                            <td>Δ</td>
                         </tr>
                     </thead>
                     <tbody id="table-body">
+                        {% for game in table_data %}
+                        <tr>
+                            <td>{{ game[0] }}</td>
+                            <td>{{ game[1] }}</td>
+                            <td>{{ game[2] }}</td>
+                            <td>{{ game[3] }}</td>
+                            <td>{{ game[4] }}</td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 
@@ -64,9 +62,8 @@
     </main>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script>updateRatingsTablePR("7day", "NBAbasketball")</script>
-    <script>document.getElementById('7day').classList.add('selected-division')</script>
-
+    <!-- <script>document.getElementById('all').classList.add('selected-division')</script> -->
+    <!-- <script>updateRatingsTable("all", "NBAbasketball")</script> -->
 
 </body>
 

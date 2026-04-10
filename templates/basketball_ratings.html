@@ -15,7 +15,7 @@
     {% include "basketballheader.html" %}
     <main>
 
-        <div id="sub-container">
+        <div id="sub-container" style="border:none;">
             <h2 class="page-titles">Ratings</h2>
             <h3 class="basketball-subtitle">Updated QuantusBasketball Ratings</h3>
 
@@ -30,9 +30,9 @@
 
             <div id="nba-ratings" class="nba-ratings">
                 <div id="division-select">
-                    <a class="division-option" onclick='updateRatingsTable("all", "NBAbasketball"); return false'>All</a>
-                    <a class="division-option" onclick='updateRatingsTable("Eastern", "NBAbasketball"); return false'>Eastern</a>
-                    <a class="division-option" onclick='updateRatingsTable("Western", "NBAbasketball"); return false'>Western</a>
+                    <a id="all" class="division-option" onclick='updateRatingsTable("all", "NBAbasketball"); return false'>All</a>
+                    <a id="Eastern" class="division-option" onclick='updateRatingsTable("Eastern", "NBAbasketball"); return false'>Eastern</a>
+                    <a id="Western" class="division-option" onclick='updateRatingsTable("Western", "NBAbasketball"); return false'>Western</a>
                     
                 </div>
                 
@@ -65,6 +65,7 @@
     </main>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>document.getElementById('all').classList.add('selected-division')</script>
     <script>updateRatingsTable("all", "NBAbasketball")</script>
 
 </body>

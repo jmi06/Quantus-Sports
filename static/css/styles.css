@@ -64,7 +64,7 @@ tr {
     max-width: 75%;
     margin: auto;
     margin-top: 1%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 #rank-table {
@@ -157,8 +157,7 @@ body {
 }
 
 html {
-    background-color: #232931;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(14, 5, 43, 1) 51%, rgba(5, 5, 5, 1) 100%);
+    background: #232931;
 }
 
 h3 {
@@ -175,13 +174,8 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0a0619;
-    /* padding: 15px; */
-    /* padding-right: 0px; */
-    /* padding-left: 0px; */
+    background-color: #393E46;
     padding: 0rem 2rem;
-    /* width: 100%; */
-    /* border-width: 5px; */
 
 }
 
@@ -381,11 +375,14 @@ thead{
 
 
 }
+.click-pointer{
+    cursor: pointer;
+}
 
 #data-table td{
     font-family: "Roboto Mono", monospace;
     font-weight: 500;
-    color: #ffcc99;
+    color: rgb(255, 178, 143);
 
 }
 
@@ -399,13 +396,13 @@ thead{
 
 }
 
-#data-table tr:nth-child(even) {
+/* #data-table tr:nth-child(even) {
     background-color: #111010;
 }
 
 #data-table tr:nth-child(odd) {
     background-color: #111213;
-}
+} */
 
 #data-table th,
 tr,
