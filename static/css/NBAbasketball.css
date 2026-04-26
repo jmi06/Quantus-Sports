@@ -150,3 +150,27 @@ span a {
 #table-head td{
     background-color: #303741;
 }
+@media (max-width: 480px) {
+    .logo {
+        display: none !important;
+    }
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content: center;
+        margin-right:0;
+    }
+    .league-nav{
+        margin-top:15px;
+        flex-direction:column;
+    }
+    .league-nav >div{
+        margin:0;
+        text-align:center;
+        width: 75%;
+        margin:auto;
+    }
+    .league-title{
+        font-size:25px;
+        margin-bottom: 15px;
+    }
+}

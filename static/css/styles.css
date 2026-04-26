@@ -9,6 +9,8 @@
 }
 
 
+
+
 h1,
 h2,
 h3,
@@ -79,6 +81,12 @@ p{
     margin-bottom: 5%;
     border: #a4a3a3 solid 2px;
     max-width: 75%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+#ratings-container {
+    margin-bottom: 5%;
     margin: auto;
     margin-top: 1%;
     margin-bottom: 3%;
@@ -361,6 +369,12 @@ a:visited {
 
 }
 
+.sport-option{
+    width: 5vw;
+    max-width: 80px;
+    min-width: 30px;
+}
+
 .directory{
     color:white;
     margin-left: 2%;
@@ -618,4 +632,56 @@ math {
 
 #hometeam {
     text-decoration: wavy;
+}
+.home-link-nav{
+    display:none;
+}
+
+@media(max-width: 480px ){
+    .home-title{
+        font-size:30px;
+        margin-bottom: 15px;
+    }
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content: center;
+        margin-right:0;
+    }
+    .home-link-nav{
+        display:inline;
+    }
+    .nav-links>a{
+        margin-left:0;
+    }
+
+    #categories{
+        margin-top:15px;
+        flex-direction:column;
+        margin-bottom:15px;
+    }
+
+    #sport-selector > div{
+        flex: 0 1 50px;
+        margin-bottom: 15px;
+    }
+    /* #top-ratings{
+        display:none;
+    } */
+    #sub-container{
+        margin-top:30px;
+    }
+    #navbar{
+        justify-content: center;
+        padding: 10px;
+    }
+    .logo{
+        display:none;
+        margin:0;
+        padding:0;
+
+    }
+    .about-link-nav{
+        display:none;
+    }
+
 }
