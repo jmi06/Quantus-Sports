@@ -1,0 +1,152 @@
+
+
+.league-title{
+    color:rgb(255, 178, 143);
+    font-family: Tourney, sans-serif;
+    margin: 2%;
+    margin-top: 5%;
+    font-size: 5vw;
+    text-align: center;
+}
+
+.logo{
+    color: rgb(255, 178, 143);
+}
+
+.league-nav{
+    display:flex;
+    justify-content: center;
+    color: black;
+    flex-wrap: wrap;
+
+}
+
+.league-nav div{
+    margin: 10px;
+    padding: 10px;
+
+    background: rgb(255, 178, 143);
+}
+
+.league-subtitle{
+    color: rgb(255, 178, 143);
+    font-weight: 500;
+    text-align: center;
+}
+
+.selected-division{
+    border: rgb(255, 178, 143) solid 2px !important;
+    color:white;
+
+}
+
+#top-ratings-league h2{
+    background-color: rgb(255, 178, 143);
+    
+}
+
+#top-ratings-league{
+    border-color: rgb(255, 178, 143);
+}
+#data-table td{
+    font-family: "Roboto Mono", monospace;
+    font-weight: 500;
+    color: white;
+
+}
+#githubLink{
+    color: rgb(255, 178, 143);
+    text-decoration:none;
+}
+#githubLink a:visited{
+    color: rgb(255, 178, 143);
+    text-decoration: none;
+}
+
+#ratings-option-container{
+    margin-top: 50px;
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.ratings_option{
+    background-color: #2e363f;
+    padding: 25px;
+    max-width: 350px;
+    border: 1px solid #3e4853;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+p > a{
+    color:rgb(255, 178, 143);
+    
+
+}
+
+h2 > a{
+    color:rgb(255, 178, 143);
+    
+
+}
+
+.ratings_option > h2{
+    color:rgb(255, 178, 143);
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.ratings_option > h3, p, li{
+    color:white;
+    text-align: center;
+}
+
+
+.ratings_option p{
+    text-align: left;
+    /* width:75%; */
+}
+.basketball-nav a {
+    color: black;
+}
+
+.page-titles{
+    font-family: Tourney, sans-serif;
+    text-align: center;
+    color: rgb(255, 178, 143);
+    font-size: 1.9rem;
+
+
+}
+
+
+span a:visited {
+    color: #232931; 
+} 
+
+span a {
+    color: #232931;
+
+} 
+
+#data-table{
+    border:#393E46 2px solid;
+}
+
+#data-table tr:nth-child(even) {
+    background-color: #2C333D;
+    
+}
+
+#data-table tr:nth-child(odd) {
+    background-color: #37404A;
+}
+
+#data-table tr:hover{
+    background-color:#1C1F24;
+}
+#table-head td{
+    background-color: #303741;
+}

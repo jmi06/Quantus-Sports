@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
+
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include sport_key ~ "/header.html" %}
+    <main>
+
+
+        <div id="sub-container" style="border:none;">
+            <h2 class="page-titles">Ratings</h2>
+            <h2 class="league-subtitle">Please select a system</h2>
+            <div id="ratings-option-container">
+
+            <div class="ratings_option">
+                <h2><a href="ratings/QuantusRatings">QuantusRatings</a></h2>
+                <h3><i>Adapted Elo formula</i></h3>
+                <p> 
+                    Rating system incorporating a team's dominance over another. Based on Arpad Elo's method. <br> <a href="/about#QuantusRatings">Learn More</a>
+                </p>
+            </div>
+
+
+                
+                <div class="ratings_option">
+                    <h2><a href="ratings/QuantusIndex">QuantusIndex</a></h2>
+                    <h3><i>Adapted PageRank Algorithm</i></h3>
+
+
+                    <p>
+                        Based solely on wins, and "authority" of individual teams. Based on Google's PageRank algorithm. <br> <a href="/about#QuantusIndex">Learn More</a>
+                    </p>
+            </div>
+            
+            
+            
+            
+        </div>
+    </div>
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" 
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>document.getElementById('all').classList.add('selected-division')</script>
+    <script>updateRatingsTable("all", "NBAbasketball")</script>
+
+</body>
+
+</html>

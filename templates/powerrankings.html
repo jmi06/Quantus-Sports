@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/basketball.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
 
     <title>QuantusSports</title>
 
 </head>
 
 <body>
-    {% include "basketballheader.html" %}
+    {% include sport_key ~ "/header.html" %}
     <main>
 
         <div id="sub-container" style="border:none;">
             <h2 class="page-titles">PowerRankings</h2>
-            <h3 class="basketball-subtitle">7 Day NBA PowerRankings</h3>
+            <h3 class="league-subtitle">7 Day PowerRankings</h3>
 
 
 
@@ -27,13 +27,13 @@
         </div>
 
 
-        <div id="sub-container">
+        <div id="sub-container" style="border:none;">
 
-            <div id="nba-ratings" class="nba-ratings">
+            <div id="league-ratings" class="league-ratings">
                 <div id="division-select">
-                    <a class="division-option" id="7day" onclick='updateRatingsTablePR("7day", "NBAbasketball"); return false'>7 Days</a>
-                    <a class="division-option" id="14day" onclick='updateRatingsTablePR("14day", "NBAbasketball"); return false'>14 Days</a>
-                    <a class="division-option" id="30day" onclick='updateRatingsTablePR("30day", "NBAbasketball"); return false'>30 Days</a>
+                    <a class="division-option" id="7day" onclick='updateRatingsTablePR("7day", {{sport_key|tojson}}); return false'>7 Days</a>
+                    <a class="division-option" id="14day" onclick='updateRatingsTablePR("14day", {{sport_key|tojson}}); return false'>14 Days</a>
+                    <a class="division-option" id="30day" onclick='updateRatingsTablePR("30day", {{sport_key|tojson}}); return false'>30 Days</a>
                     
                 </div>
                 
@@ -57,14 +57,14 @@
 
 
 
-        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+        <h3 style="text-align: center; color:white;"><a id="githubLink"
                 href="https://github.com/jmi06">Made by jmi06</a></h3>
 
 
     </main>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script>updateRatingsTablePR("7day", "NBAbasketball")</script>
+    <script>updateRatingsTablePR("7day", {{sport_key|tojson}})</script>
     <script>document.getElementById('7day').classList.add('selected-division')</script>
 
 

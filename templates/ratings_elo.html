@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~'.css') }}">
+
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include sport_key ~ "/header.html" %}
+    <main>
+
+        <div id="sub-container" style="border:none;">
+            <h2 class="page-titles">Ratings</h2>
+            <h3 class="league-subtitle">Updated Quantus{{sport_name}} Ratings</h3>
+
+
+
+
+
+        </div>
+
+
+        <div id="sub-container" style="border:none;">
+
+            <div id="league-ratings" class="league-ratings">
+                <div id="division-select">
+                    {% for i in range(divisions|length) %}
+                        <a id="{{divisions[i]}}" class="division-option" onclick='updateRatingsTable({{divisions[i]|tojson}}, {{sport_key|tojson}}); return false'>{{division_titles[i]}}</a>
+                    {% endfor %}
+
+                </div>
+                
+                <table id="data-table">
+                    <thead>
+                        <tr id="table-head">
+                            <td>#</td>
+                            <td>Team</td>
+                            <td style="text-align: center;">Rating</td>
+                            <td style="text-align: center;">Games Played</td>
+                            <td style="text-align: center;">PCT</td>
+
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+
+
+
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" 
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>document.getElementById('all').classList.add('selected-division')</script>
+    <script>updateRatingsTable("all", {{sport_key|tojson}})</script>
+
+</body>
+
+</html>

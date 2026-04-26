@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
+
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include sport_key ~ "/header.html" %}
+    <main>
+
+        <div id="sub-container" style="border:none;">
+            <h2 class="page-titles">Predictions</h2>
+            <p style="color: white;text-align: center;">These predictions are simply an application of the Quantus ratings formula. They are not intended to be used to make financial decisions.</p>
+
+        </div>
+
+        <div id="prediction-container">
+            <h3>Prediction Accuracy: {{(accuracy_record *100) | round(1)}}%</h3>
+            
+            {% for game in match_data %}
+            <h4 id="gametime">{{ game[0] }}</h4>
+            <h3 class="game">
+                <span id="hometeam">({{game[2]}}) {{game[1]}} {{game[4]}}</span><span style="color:white;"> -</span>
+                <span id="awayteam">{{game[8]}} {{game[5]}} ({{game[6]}})</span>
+                
+            </h3>
+            {% endfor %}
+        </div>
+
+
+
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/predictions.js') }}"></script>
+    <script>setup({{sport_key|tojson}})</script>
+
+
+</body>
+
+</html>

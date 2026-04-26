@@ -5,32 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/basketball.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
 
     <title>QuantusSports</title>
 
 </head>
 
 <body>
-    {% include "basketballheader.html" %}
+    {% include sport_key ~ "/header.html" %}
     <main>
 
         <div id="sub-container">
-            <h1 class="basketball-title">QuantusBasketball</h1>
+            <h1 class="league-title">QuantusBasketball</h1>
 
-            <div class="basketball-nav">
-                <div><span><a href="/basketball/ratings">Ratings</a></span></div>
-                <div><span><a href="/basketball/powerrankings">PowerRankings</a></span></div>
-                <div><span><a href="/basketball/predictions">Predictions</a></span></div>
+            <div class="league-nav">
+                <div><span><a href="/NBAbasketball/ratings">Ratings</a></span></div>
+                <div><span><a href="/NBAbasketball/powerrankings">PowerRankings</a></span></div>
+                <div><span><a href="/NBAbasketball/predictions">Predictions</a></span></div>
             </div>
 
-            <p class="basketball-subtitle">Follow QuantusBasketball on BlueSky 🦋</p>
+            <p class="league-subtitle">Follow QuantusBasketball on BlueSky 🦋</p>
 
 
 
         </div>
 
-        <div id="ticker"></div>
 
         <div id="top-ratings">
 
@@ -57,7 +56,7 @@
 
 
 
-        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+        <h3 style="text-align: center; color:white;"><a id="githubLink"
                 href="https://github.com/jmi06">Made by jmi06</a></h3>
 
 

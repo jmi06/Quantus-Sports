@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/basketball.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
 
     <title>QuantusSports</title>
 
 </head>
 
 <body>
-    {% include "basketballheader.html" %}
+    {% include sport_key ~ "/header.html" %}
     <main>
 
         <div id="sub-container" style="border:none;">
-            <h2 class="page-titles">Ratings</h2>
-            <h3 class="basketball-subtitle">Updated QuantusBasketball Ratings</h3>
+            <h2 class="page-titles">Index</h2>
+            <h3 class="league-subtitle">Updated QuantusBasketball Index</h3>
+            <p><i>League Average Index: 100</i></p>
 
 
 
@@ -26,14 +27,13 @@
         </div>
 
 
-        <div id="sub-container">
+        <div id="sub-container" style="border:none;">
 
-            <div id="nba-ratings" class="nba-ratings">
+            <div id="league-ratings" class="league-ratings">
                 <div id="division-select">
-                    <a id="all" class="division-option" onclick='updateRatingsTable("all", "NBAbasketball"); return false'>All</a>
-                    <a id="Eastern" class="division-option" onclick='updateRatingsTable("Eastern", "NBAbasketball"); return false'>Eastern</a>
-                    <a id="Western" class="division-option" onclick='updateRatingsTable("Western", "NBAbasketball"); return false'>Western</a>
-                    
+                    {% for i in range(divisions|length) %}
+                        <a id="{{divisions[i]}}" class="division-option" onclick='updateRatingsTablePageRank({{divisions[i]|tojson}}, {{sport_key|tojson}}); return false'>{{division_titles[i]}}</a>
+                    {% endfor %}
                 </div>
                 
                 <table id="data-table">
@@ -41,9 +41,9 @@
                         <tr id="table-head">
                             <td>#</td>
                             <td>Team</td>
-                            <td>Rating</td>
-                            <td>Games Played</td>
-                            <td>PCT</td>
+                            <td style="text-align: center;">Index</td>
+                            <td style="text-align: center;">Games Played</td>
+                            <td style="text-align: center;">PCT</td>
 
                         </tr>
                     </thead>
@@ -58,7 +58,7 @@
 
 
 
-        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+        <h3 style="text-align: center; color:white;"><a id="githubLink" 
                 href="https://github.com/jmi06">Made by jmi06</a></h3>
 
 
@@ -66,7 +66,7 @@
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script>document.getElementById('all').classList.add('selected-division')</script>
-    <script>updateRatingsTable("all", "NBAbasketball")</script>
+    <script>updateRatingsTablePageRank("all", {{sport_key|tojson}})</script>
 
 </body>
 
