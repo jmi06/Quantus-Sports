@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include "header.html" %}
+    <main>
+
+        <div id="sub-container">
+            <h1 class="home-title" style="font-size: 4vw">Ratings</h1>
+        <div id="top-ratings">
+            <div id="top-ratings-mlb" class="top-ratings-class">
+                <h2>MLB Baseball</h2>
+                {% for team in mlb %}
+                <h3>
+                    {{loop.index}}. {{team[0]}} - {{team[1]}}
+                </h3>
+                {% endfor %}
+                <h3><a href="/MLBbaseball/ratings">View All</a></h3>
+
+            </div>
+            <div id="top-ratings-nba" class="top-ratings-class">
+                <h2>NBA Basketball</h2>
+                {% for team in nba %}
+                <h3>
+                   {{loop.index}}. {{team[0]}} - {{team[1]}}
+                </h3>
+                {% endfor %}
+                <h3><a href="/NBAbasketball/ratings">View All</a></h3>
+
+
+            </div>
+            <div id="top-ratings-nhl" class="top-ratings-class">
+                <h2>NHL Hockey</h2>
+                {% for team in nhl %}
+                <h3>
+                    {{loop.index}}. {{team[0]}} - {{team[1]}}
+                </h3>
+                {% endfor %}
+                <h3><a href="/NHLhockey/ratings">View All</a></h3>
+            </div>
+        </div>
+
+
+        </div>
+
+
+        </div>
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="/components/header.js"></script>
+
+</body>
+
+</html>

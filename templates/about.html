@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include "header.html" %}
+    <main>
+
+        <div id="sub-container">
+            <h1 class="home-title" style="font-size: 4vw">QuantusSports</h1>
+
+            <h2 class="about-subtitle" id="about">About</h2>
+            <p>QuantusSports is a sports statistics analytics platform providing unique metrics to the NBA, NHL, and MLB. Currently, it is comprised of three main aspects, Ratings, PowerRankings, and Predictions.</p>
+            <h2 class="about-subtitle" id="ratings">Ratings</h2>
+            <p>QuantusSports has two main rating metrics: QuantusRatings and QuantusIndex <br></p>
+            <p><span style="color: #8ea2fd;" id="QuantusRatings">QuantusRatings</span> is a modified Elo formula. Elo is a system created by Arpad Elo for ranking chess players. Every player starts
+            with a rating of 1000. As teams play each other, their ratings fluctuate, gaining points from a win, and losing points from a loss. The point swing is determined by the respective
+            ratings of both competitors. If a player with a 600 rating beats a player with a 1200 rating, the point swing will be much greater than say two players with the same rating. The system
+            is used in modern chess, tennis, and competitive video games. While the normal Elo formula treats a games results as a binary decision, win or loss, the QuantusRatings formula takes into 
+            account one more piece of information, the point differential. If a baseball team is blown out 9-0, it will have a bigger impact on their rating than if they lose a close game.</p>
+            <p><a href="https://en.wikipedia.org/wiki/Elo_rating_system">Learn more about Elo</a></p>
+
+            <p><span style="color: #8ea2fd;" id="QuantusIndex">QuantusIndex</span> is an application of Google's PageRank algorithm. PageRank is used to determine which web
+            pages are the most important, by taking into account the number of other important pages that link to it. QuantusIndex replaces web pages with sports teams. When a team beats another team,
+            it not only rewards the team that won, but every other team in the network based on their past encounters. Similar to baseball's OPS+, the league average QuantusIndex rating is set to 100,
+            with teams above 100 being above average, and teams under 100 being below average. A team with an Index of 125 is 25% better than average.</p>
+            <p><a href="https://en.wikipedia.org/wiki/PageRank">Learn more about PageRank</a></p>
+
+            <h2 class="about-subtitle" id="PowerRankings">PowerRankings</h2>
+            <p>PowerRankings are an application of QuantusRatings that attempt to determine who the best team is within a 7, 14, or 30 day period. It uses the same formula as QuantusRatings
+               but is much more volatile. Each game is worth more because of the short timeframe. You will often see teams with a rating over 1000, or below 0 in PowerRankings.
+            </p>
+            
+            <h2 class="about-subtitle" id="Predictions">Predictions</h2>
+            <p>Predictions are another application of QuantusRatings that attempt (with varying success) to predict the winner of a matchup. It does this using the standard
+                Elo <a href="https://en.wikipedia.org/wiki/Elo_rating_system#Mathematical_details">expected score formula</a>. The parameters are adjusted every so often to make it as accurate as possible. Despite this, in sports like baseball and hockey
+                the accuracy is typically not much better than a coin flip. The model does better in sports with higher skill gaps and less variability like basketball. 
+                These predictions are not intended to be used to make financial decisions.
+            </p>
+            <h2 class="about-subtitle" id="bluesky">BlueSky</h2>
+            <p>QuantusSports is active on BlueSky through various automated accounts. After each game, these accounts post updates on how QuantusRatings were affected. They also post
+                the current days predictions, and the top 10 teams every morning.<br><br>
+                <a href="https://bsky.app/profile/quantusbaseball.bsky.social">@QuantusBaseball.bsky.social</a><br>
+                <a href="https://bsky.app/profile/quantusbasketball.bsky.social">@QuantusBasketball.bsky.social</a><br>
+                <a href="https://bsky.app/profile/quantushockey.bsky.social">@QuantusHockey.bsky.social</a>
+
+            
+            </p>
+
+
+        </div>
+
+
+        </div>
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="/components/header.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include "header.html" %}
+    <main>
+
+        <div id="sub-container">
+            <h1 class="home-title" style="font-size: 4vw">QuantusSports</h1>
+
+            <h2 class="about-subtitle" id="about">QuantusSports</h2>
+            <ul class="directory">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <ul class="directory">
+                    <li><a href="/about#ratings">Ratings</a></li>
+                    <ul class="directory">
+                        <li><a href="/about#QuantusRatings">QuantusRatings</a></li>
+                        <li><a href="/about#QuantusIndex">QuantusIndex</a></li>
+
+                    </ul>
+                    <li><a href="/about#PowerRankings">PowerRankings</a></li>
+                    <li><a href="/about#Predictions">Predictions</a></li>
+                    <li><a href="/about#bluesky">BlueSky</a></li>
+
+                <li><a href="/ratings">Ratings</a></li>
+                <li><a href="/sitemap">Sitemap</a></li>
+
+                </ul>
+            </ul>
+            <h2 class="about-subtitle" id="ratings">QuantusBaseball</h2>
+            <ul class="directory">
+                <li><a href="/MLBbaseball">QuantusBaseball</a></li>
+                <ul class="directory">
+                    <li><a href="/MLBbaseball/ratings">Ratings</a></li>
+                    <li><a href="/MLBbaseball/powerrankings">PowerRankings</a></li>
+                    <li><a href="/MLBbaseball/predictions">Predictions</a></li>
+                </ul>
+
+            </ul>
+
+            <h2 class="about-subtitle" id="ratings">QuantusBasketball</h2>
+            <ul class="directory">
+                <li><a href="/NBAbasketball">QuantusBasketball</a></li>
+                <ul class="directory">
+                    <li><a href="/NBAbasketball/ratings">Ratings</a></li>
+                    <li><a href="/NBAbasketball/powerrankings">PowerRankings</a></li>
+                    <li><a href="/NBAbasketball/predictions">Predictions</a></li>
+                </ul>
+
+            </ul>
+            <h2 class="about-subtitle" id="ratings">QuantusHockey</h2>
+            <ul class="directory">
+                <li><a href="/NHLhockey">QuantusHockey</a></li>
+                <ul class="directory">
+                    <li><a href="/NHLhockey/ratings">Ratings</a></li>
+                    <li><a href="/NHLhockey/powerrankings">PowerRankings</a></li>
+                    <li><a href="/NHLhockey/predictions">Predictions</a></li>
+                </ul>
+
+            </ul>
+        </div>
+
+
+        </div>
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="/components/header.js"></script>
+
+</body>
+
+</html>

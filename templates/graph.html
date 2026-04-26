@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script> -->
+     <!-- <script src="https://cdn.jsdelivr.net/npm/graphology-library@0.8.0/dist/graphology-library.min.js"></script> -->
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include sport_key ~ "/header.html" %}
+    <main>
+
+        <div id="sub-container" style="border:none;">
+            <h2 class="page-titles">Graph</h2>
+            <!-- <p style="color: white;text-align: center;">These predictions are simply an application of the Quantus ratings formula. They are not intended to be used to make financial decisions.</p> -->
+
+        </div>
+
+        <div id="graph-container">
+            
+
+        </div>
+
+
+
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        const layout = window.forceAtlas2 || window.graphologyLayoutForceAtlas2;
+
+        if (layout) {
+            layout.assign(graph, {
+                iterations: 100,
+                settings: {
+                    gravity: 1,
+                    barnesHutOptimize: true,
+                    linLogMode: true
+                }
+            });
+        } else {
+            console.error("ForceAtlas2 layout library not loaded correctly.");
+        }
+        const rawData = {{ graph|tojson }};
+        const formattedData = {
+                nodes: rawData.nodes.map(node => ({
+                    key: node.id, 
+                    attributes: {
+                        label: node.id,
+                        size: 12,
+                        color: "#3b82f6",
+                        x: Math.random(), 
+                        y: Math.random()
+                    }
+                })),
+                edges: rawData.links.map(link => ({
+                    source: link.source,
+                    target: link.target,
+                    attributes: {
+                        size: 1.5,
+                        color: "#94a3b8",
+                        label: String(link.weight || "")
+                    }
+                }))
+            };
+        const graph = new graphology.Graph();
+        graph.import(formattedData)
+        if (window.graphologyLibrary && window.graphologyLibrary.layoutForceAtlas2) {
+            graphologyLibrary.layoutForceAtlas2.assign(graph, {
+                iterations: 100,
+                settings: {
+                    gravity: 0.01,
+                    barnesHutOptimize: true,
+                    linLogMode: true
+                }
+            });
+        } else {
+            console.error("ForceAtlas2 layout library not found on the window object.");
+        }
+
+        const container = document.getElementById("graph-container");
+        const renderer = new Sigma(graph, container, {
+            renderEdgeLabels: true,
+            enableEdgeClickEvents: true,
+            enableEdgeHoverEvents: true,
+            labelFont: "Inter, sans-serif",
+            labelSize: 12,
+            labelWeight: "bold",
+            labelColor: { color: "black" },
+            defaultEdgeType: "arrow",
+        });
+
+        renderer.on("enterNode", ({ node }) => {
+            graph.setNodeAttribute(node, "highlighted", true);
+            graph.setNodeAttribute(node, "color", "#fbbf24"); 
+        });
+
+        renderer.on("leaveNode", ({ node }) => {
+            graph.setNodeAttribute(node, "highlighted", false);
+            graph.setNodeAttribute(node, "color", "#3b82f6");
+        });
+    </script>
+
+
+</body>
+
+</html>

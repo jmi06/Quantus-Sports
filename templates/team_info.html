@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include sport_key ~ "/header.html" %}
+    <main>
+
+        <div id="sub-container" style="border:none;">
+            <h2 class="page-titles">{{team_name}}</h2>
+            <h3 class="league-subtitle">{{record}}</h3>
+
+        </div>
+
+        <div id="sub-container" style="border:none;">
+
+            <div id="league-ratings" class="league-ratings" >
+                <div style="width: 80%; height:50vh; margin:auto; margin-bottom: 1%">
+                    <canvas id="graph" style="display: block; box-sizing: border-box; height: 460px; width: 690px;" width="690" height="460"></canvas>
+                </div>
+                <table id="data-table">
+                    <thead>
+                        <tr id="table-head">
+                            <td>Date</td>
+                            <td>Opponent</td>
+                            <td>Score</td>
+                            <td>Result</td>
+                            <td>Δ</td>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        {% for game in table_data %}
+                        <tr>
+                            <td>{{ game[0] }}</td>
+                            <td>{{ game[1] }}</td>
+                            <td>{{ game[2] }}</td>
+                            <td>{{ game[3] }}</td>
+                            <td>{{ game[4] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+
+
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" 
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/teamPage.js')}}"></script>
+    <script>buildTeamChart({{ dates|tojson }}, {{ ratings|tojson }})</script>
+
+
+</body>
+
+</html>

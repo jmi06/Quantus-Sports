@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include "header.html" %}
+    <main>
+
+        <div id="sub-container">
+            <h1 class="home-title">Quantus Sports</h1>
+            <h3 class="home-subtitle">How great?</h3>
+
+            <div id="categories">
+                <div><a class="category-option" href="/ratings">Ratings</a></div>
+                <div><a class="category-option" href="/sitemap">Sports</a></div>
+                <div><a class="category-option" href="/about">About</a></div>
+
+            </div>
+            <div id="sport-selector">
+
+                <div>
+                    <a href="/MLBbaseball"><img src="{{ url_for('static', filename='assets/baseball.png') }}"  class="sport-option" alt="" srcset=""></a>
+                </div>
+                <div>
+                    <a href="/NBAbasketball"><img src="{{ url_for('static', filename='assets/basketball.png') }}"  class="sport-option" alt="" srcset=""></a>
+                </div>
+                <div>
+                    <a href="/NHLhockey"><img src="{{ url_for('static', filename='assets/hockey.png') }}" alt=""  class="sport-option" srcset=""></a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="ticker"></div>
+
+        <div id="top-ratings">
+            <div id="top-ratings-mlb" class="top-ratings-class">
+                <h2>MLB Baseball</h2>
+                {% for team in mlb %}
+                <h3>
+                    {{loop.index}}. {{team[0]}} - {{team[1]}}
+                </h3>
+                {% endfor %}
+            </div>
+            <div id="top-ratings-nba" class="top-ratings-class">
+                <h2>NBA Basketball</h2>
+                {% for team in nba %}
+                <h3>
+                   {{loop.index}}. {{team[0]}} - {{team[1]}}
+                </h3>
+                {% endfor %}
+
+            </div>
+            <div id="top-ratings-nhl" class="top-ratings-class">
+                <h2>NHL Hockey</h2>
+                {% for team in nhl %}
+                <h3>
+                    {{loop.index}}. {{team[0]}} - {{team[1]}}
+                </h3>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink" style="color:#8ea2fd"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="/components/header.js"></script>
+
+</body>
+
+</html>

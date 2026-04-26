@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
+
+    <title>QuantusSports</title>
+
+</head>
+
+<body>
+    {% include sport_key ~ "/header.html" %}
+    <main>
+
+        <div id="sub-container" style="border:none;">
+            <h2 class="page-titles">PowerRankings</h2>
+            <h3 class="league-subtitle">7 Day PowerRankings</h3>
+
+
+
+
+
+
+        </div>
+
+
+        <div id="sub-container" style="border:none;">
+
+            <div id="league-ratings" class="league-ratings">
+                <div id="division-select">
+                    <a class="division-option" id="7day" onclick='updateRatingsTablePR("7day", {{sport_key|tojson}}); return false'>7 Days</a>
+                    <a class="division-option" id="14day" onclick='updateRatingsTablePR("14day", {{sport_key|tojson}}); return false'>14 Days</a>
+                    <a class="division-option" id="30day" onclick='updateRatingsTablePR("30day", {{sport_key|tojson}}); return false'>30 Days</a>
+                    
+                </div>
+                
+                <table id="data-table">
+                    <thead>
+                        <tr id="table-head">
+                            <td>#</td>
+                            <td>Team</td>
+                            <td>Rating</td>
+
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+
+
+
+
+
+        <h3 style="text-align: center; color:white;"><a id="githubLink"
+                href="https://github.com/jmi06">Made by jmi06</a></h3>
+
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>updateRatingsTablePR("7day", {{sport_key|tojson}})</script>
+    <script>document.getElementById('7day').classList.add('selected-division')</script>
+
+
+</body>
+
+</html>
