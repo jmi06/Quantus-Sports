@@ -22,7 +22,20 @@ tr {
     font-family: "Inter", sans-serif;
 }
 
+#directory{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
 
+.section{
+    margin:10px;
+}
+
+.directory > li > a{
+    color:white;
+    font-weight: 400;
+}
 
 #sport-selector {
     display: flex;
@@ -642,18 +655,9 @@ math {
         font-size:30px;
         margin-bottom: 15px;
     }
-    .nav-links{
-        flex-wrap:wrap;
-        justify-content: center;
-        margin-right:0;
+    #navbar .nav-links {
+        display: none;
     }
-    .home-link-nav{
-        display:inline;
-    }
-    .nav-links>a{
-        margin-left:0;
-    }
-
     #categories{
         margin-top:15px;
         flex-direction:column;
@@ -675,7 +679,6 @@ math {
         padding: 10px;
     }
     .logo{
-        display:none;
         margin:0;
         padding:0;
 

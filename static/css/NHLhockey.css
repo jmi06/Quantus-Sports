@@ -152,14 +152,14 @@ span a {
     background-color: #303741;
 }
 @media (max-width: 480px) {
-    .logo {
-        display: none !important;
+    /* #navbar .nav-links {
+        display: none;
     }
     .nav-links{
         flex-wrap:wrap;
         justify-content: center;
         margin-right:0;
-    }
+    } */
     .league-nav{
         margin-top:15px;
         flex-direction:column;
