@@ -135,7 +135,7 @@ async function updateRatingsTablePR(timeframe, sport){
         tr.classList.add('click-pointer')
         tr.onclick = function(){
 
-            window.location.href= `/${shortsport}/team?team=${element[0]}`;
+            window.location.href= `/${sport}/team?team=${element[0]}`;
         } 
         tr.innerHTML = `
             <td>${index+1}</td>

@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ sport_key ~ '.css') }}">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script> -->
-     <!-- <script src="https://cdn.jsdelivr.net/npm/graphology-library@0.8.0/dist/graphology-library.min.js"></script> -->
     <title>QuantusSports</title>
 
 </head>
@@ -19,22 +16,13 @@
 
         <div id="sub-container" style="border:none;">
             <h2 class="page-titles">Graph</h2>
-            <!-- <p style="color: white;text-align: center;">These predictions are simply an application of the Quantus ratings formula. They are not intended to be used to make financial decisions.</p> -->
-
         </div>
 
-        <div id="graph-container">
-            
-
-        </div>
-
-
-
+        <div id="graph-container"></div>
 
 
         <h3 style="text-align: center; color:white;"><a id="githubLink"
                 href="https://github.com/jmi06">Made by jmi06</a></h3>
-
 
     </main>
 
@@ -113,8 +101,6 @@
             graph.setNodeAttribute(node, "color", "#3b82f6");
         });
     </script>
-
-
 </body>
 
 </html>

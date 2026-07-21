@@ -24,14 +24,18 @@
         <div id="prediction-container">
             <h3>Prediction Accuracy: {{(accuracy_record *100) | round(1)}}%</h3>
             
-            {% for game in match_data %}
-            <h4 id="gametime">{{ game[0] }}</h4>
-            <h3 class="game">
-                <span id="hometeam">({{game[2]}}) {{game[1]}} {{game[4]}}</span><span style="color:white;"> -</span>
-                <span id="awayteam">{{game[8]}} {{game[5]}} ({{game[6]}})</span>
-                
-            </h3>
-            {% endfor %}
+            {% if match_data | length > 0 %}
+                {% for game in match_data %}
+                <h4 id="gametime">{{ game[0] }}</h4>
+                <h3 class="game">
+                    <span id="hometeam">({{game[2]}}) {{game[1]}} {{game[4]}}</span><span style="color:white;"> -</span>
+                    <span id="awayteam">{{game[8]}} {{game[5]}} ({{game[6]}})</span>
+                    
+                </h3>
+                {% endfor %}
+            {% else %}
+                <p>No games scheduled for the next 3 days</p>
+            {% endif %}
         </div>
 
 
