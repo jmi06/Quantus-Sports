@@ -1,8 +1,11 @@
 # QuantusSports
-Unique sports statistics analytics platform.
+
+Unique sports statistics analytics platform.  
+
+🌐 **Website:** https://quantussports.vercel.app
 
 ## About
-QuantusSports is a sports statistics analytics platform providing unique metrics to competitive sports. The project evaluates team performance through various metrics such as QuantusRatings, and the QuantusIndex. 
+QuantusSports is a sports statistics analytics platform providing unique metrics to competitive sports. The project evaluates team performance through various metrics such as   QuantusRatings, and the QuantusIndex. 
 
 
 ## Leagues:
